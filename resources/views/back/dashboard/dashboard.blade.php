@@ -129,7 +129,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Mutaba'ah</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -272,21 +272,19 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
                       <a class="dropdown-item" href="auth-login-basic.html">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
+                        <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                  this.closest('form').submit();"
+                                        class="dropdown-item preview-item">
+                                </form>
                       </a>
                     </li>
                   </ul>
