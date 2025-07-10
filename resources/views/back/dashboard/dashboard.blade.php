@@ -180,7 +180,7 @@
 
 <!-- Banner Info -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('bannerinfo') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-info-circle"></i>
     <div data-i18n="Banner Info">Banner Info</div>
   </a>
@@ -275,16 +275,13 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
-                        <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                  this.closest('form').submit();"
-                                        class="dropdown-item preview-item">
-                                </form>
+                     <form method="POST" action="{{ route('logout') }}">
+  @csrf
+  <button type="submit" class="dropdown-item preview-item">
+    <i class="bx bx-power-off me-2"></i>
+    <span class="align-middle">Log Out</span>
+  </button>
+</form>
                       </a>
                     </li>
                   </ul>

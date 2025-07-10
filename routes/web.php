@@ -1,9 +1,10 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BannerinfoController;
 use App\Http\Controllers\TugasmingguanController;
 
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -14,9 +15,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // BANNER INFO
+    Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('bannerinfo');
+    Route::get('/formbannerinfo', [BannerinfoController::class, 'formbannerinfo'])->name('formbannerinfo');
 });
 
 Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');

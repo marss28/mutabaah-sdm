@@ -142,7 +142,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -180,7 +180,7 @@
 
 <!-- Banner Info -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('bannerinfo') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-info-circle"></i>
     <div data-i18n="Banner Info">Banner Info</div>
   </a>
@@ -271,24 +271,19 @@
                         <span class="align-middle">Settings</span>
                       </a>
                     </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
-                      </a>
-                    </li>
+                   <li>
+               <div class="dropdown-divider"></div>
+
+ <form method="POST" action="{{ route('logout') }}">
+  @csrf
+  <button type="submit" class="dropdown-item preview-item">
+    <i class="bx bx-power-off me-2"></i>
+    <span class="align-middle">Log Out</span>
+  </button>
+</form>
+
+    </li>
+
                   </ul>
                 </li>
                 <!--/ User -->
