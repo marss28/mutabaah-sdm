@@ -1,9 +1,10 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\tugasbulananController;
 use App\Http\Controllers\BannerinfoController;
+use App\Http\Controllers\TugasmingguanController;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -28,5 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('bannerinfo');
     Route::get('/formbannerinfo', [BannerinfoController::class, 'formbannerinfo'])->name('formbannerinfo');
 });
+
+Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
+Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
 
 require __DIR__.'/auth.php';

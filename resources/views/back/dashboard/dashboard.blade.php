@@ -164,7 +164,7 @@
 
 <!-- Tugas Mingguan -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('tugasmingguan')}}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-week"></i>
     <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
   </a>
