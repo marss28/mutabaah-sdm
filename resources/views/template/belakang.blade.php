@@ -172,7 +172,7 @@
 
 <!-- Tugas Bulanan -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('tugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
     <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
   </a>
@@ -291,7 +291,9 @@
             </div>
           </nav>
           <div class="content-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y">
             @yield('konten')
+            </div>
             </div>
 
             
