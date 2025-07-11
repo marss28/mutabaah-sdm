@@ -164,7 +164,7 @@
 
 <!-- Tugas Mingguan -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('tugasmingguan')}}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-week"></i>
     <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
   </a>
@@ -172,7 +172,7 @@
 
 <!-- Tugas Bulanan -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('tugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
     <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
   </a>
@@ -180,7 +180,7 @@
 
 <!-- Banner Info -->
 <li class="menu-item">
-  <a href="{{ route('bannerinfo') }}" class="menu-link">
+  <a href="{{ route('banner_info') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-info-circle"></i>
     <div data-i18n="Banner Info">Banner Info</div>
   </a>

@@ -26,11 +26,14 @@ Route::middleware('auth')->group(function () {
 
     
     // BANNER INFO
-    Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('bannerinfo');
+    Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('banner_info');
     Route::get('/formbannerinfo', [BannerinfoController::class, 'formbannerinfo'])->name('formbannerinfo');
+
+    Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
+    Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
+    
 });
 
-Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
-Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
+
 
 require __DIR__.'/auth.php';
