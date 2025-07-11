@@ -19,16 +19,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-       Route::get('/tugasbulanan', [tugasbulananController::class, 'index'])->name('tugasbulanan');
+
+    // TUGAS BULANAN
+    Route::get('/tugasbulanan', [tugasbulananController::class, 'index'])->name('tugasbulanan');
     Route::get('/formtugasbulanan', [tugasbulananController::class, 'formtugasbulanan'])->name('formtugasbulanan'); 
 
     
     // BANNER INFO
     Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('bannerinfo');
     Route::get('/formbannerinfo', [BannerinfoController::class, 'formbannerinfo'])->name('formbannerinfo');
+
+    // TUGAS MINGGUAN
+    Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
+    Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
+
+
 });
 
-Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
-Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
 
 require __DIR__.'/auth.php';

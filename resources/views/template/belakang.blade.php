@@ -290,9 +290,12 @@
               </ul>
             </div>
           </nav>
+
           <div class="content-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y">
             @yield('konten')
             </div>
+          </div>
 
             
 
