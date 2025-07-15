@@ -33,6 +33,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
     Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
+    Route::post('/storetugasmingguan',[TugasmingguanController::class, 'storetugasmingguan'])->name('storetugasmingguan');
+    Route::get('/edittugasmingguan/{id}', [TugasmingguanController::class, 'edittugasmingguan'])->name('edittugasmingguan');
+    Route::put('/updatetugasmingguan/{id}', [TugasmingguanController::class,  'updatetugasmingguan'])->name('updatetugasmingguan');
+    Route::delete('/deletetugasmingguan/{id}', [TugasmingguanController::class, 'deletetugasmingguan'])->name('deletetugasmingguan');
+
 
 });
 
