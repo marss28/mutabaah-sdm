@@ -27,12 +27,22 @@ Route::middleware('auth')->group(function () {
 
     
     // BANNER INFO
-    Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('banner_info');
+    Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('bannerinfo');
     Route::get('/formbannerinfo', [BannerinfoController::class, 'formbannerinfo'])->name('formbannerinfo');
+    Route::post('storebannerinfo', [BannerinfoController::class, 'storebanner'])->name('storebanner');
+    Route::get('/editbanner/{id}', [BannerinfoController::class, 'editbanner'])->name('editbanner');
+    Route::put('/updatebanner/{id}', [BannerinfoController::class, 'updatebanner'])->name('updatebanner');
+    Route::get('/deletebanner/{id}', [BannerinfoController::class, 'deletebanner'])->name('deletebanner');
+
 
 
     Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
     Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
+
+    Route::get('/user', function(){
+        return view('template.dashboarduser');
+
+    });
 
 });
 

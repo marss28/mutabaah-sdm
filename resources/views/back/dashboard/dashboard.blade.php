@@ -180,7 +180,7 @@
 
 <!-- Banner Info -->
 <li class="menu-item">
-  <a href="{{ route('banner_info') }}" class="menu-link">
+  <a href="{{ route('bannerinfo') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-info-circle"></i>
     <div data-i18n="Banner Info">Banner Info</div>
   </a>

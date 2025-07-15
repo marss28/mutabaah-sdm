@@ -13,7 +13,7 @@ class BannerinfoController extends Controller
         return view('back.bannerinfo.index', compact('bannerinfo'));
     }
 
-    public function storeBannerinfo(Request $request)
+    public function storebanner(Request $request)
     {
         $request->validate([
             'nama_banner'=> 'required|string|max:255',
@@ -22,12 +22,12 @@ class BannerinfoController extends Controller
 
         $imagePath = $request->file('foto')->store('images', 'public');
 
-        Bannerinfo::create([
+        bannerinfo::create([
             'nama_banner' =>$request->nama_banner,
             'foto' =>$imagePath
         ]);
 
-        return redirect()->route('banner_info')->with('success', 'Banner berhasil disimpan!');
+        return redirect()->route('bannerinfo')->with('success', 'Banner berhasil disimpan!');
     
     }
 
@@ -37,5 +37,42 @@ class BannerinfoController extends Controller
         return view('back.bannerinfo.tambah', compact('bannerinfo'));
     }
     
-    
+    public function editbanner($id){
+
+        $bannerinfo = bannerinfo::findOrFail($id);
+        return view('back.bannerinfo.edit', compact('bannerinfo'));
+    }
+
+    public function updatebanner($id, Request $request)
+{
+    $request->validate([
+        'nama_banner'=> 'required|string|max:255',
+        'foto'=> 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+    ]);
+
+    $bannerinfo = bannerinfo::findOrFail($id);
+
+    // Jika ada gambar baru di-upload
+    if ($request->hasFile('foto')) {
+        $imagePath = $request->file('foto')->store('images', 'public');
+    } else {
+        $imagePath = $bannerinfo->foto; // gunakan foto lama
+    }
+
+    $bannerinfo->update([
+        'nama_banner' => $request->nama_banner,
+        'foto' => $imagePath
+    ]);
+
+    return redirect()->route('bannerinfo')->with('success', 'Banner berhasil diperbarui!');
+}
+
+
+    public function deletebanner($id)
+    {
+
+        $bannerinfo = bannerinfo::findOrFail($id);
+        $bannerinfo->delete();
+        return redirect()->route('bannerinfo');
+    }
 }
