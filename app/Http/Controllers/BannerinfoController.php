@@ -20,7 +20,7 @@ class BannerinfoController extends Controller
             'foto'=> 'required|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        $imagePath = $request->file('foto')->store('images', 'public');
+        $imagePath = $request->file('foto')->store('upload', 'public');
 
         bannerinfo::create([
             'nama_banner' =>$request->nama_banner,

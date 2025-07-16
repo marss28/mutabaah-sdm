@@ -32,7 +32,12 @@
                         <td> {{ $no++ }} </td>
                         <td> {{ $items->nama_banner }} </td>
                         <td>
-                          <img src="{{ asset('storage/' . $items->foto) }}" alt="{{ $items->nama_banner }}" width="200">
+                          @if($items->foto && file_exists(public_path('images/' . $items->foto)))
+  <img src="{{ asset('images/' . $items->foto) }}" alt="{{ $items->nama_banner }}" width="200">
+@else
+  <span>Tidak ada gambar</span>
+@endif
+
                         </td>
                         <td>
                           <div class="dropdown">
