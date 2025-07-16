@@ -21,9 +21,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    
+    // TUGAS BULANAN
     Route::get('/tugasbulanan', [tugasbulananController::class, 'index'])->name('tugasbulanan');
     Route::get('/formtugasbulanan', [tugasbulananController::class, 'formtugasbulanan'])->name('formtugasbulanan'); 
+    Route::post('/storetugasbulanan', [tugasbulananController::class, 'storetugasbulanan'])->name('storetugasbulanan');
+    Route::get('/edittugasbulanan/{id}', [tugasbulananController::class, 'edittugasbulanan'])->name('edittugasbulanan');
+    Route::put('/updatetugasbulanan/{id}', [tugasbulananController::class, 'updatetugasbulanan'])->name('updatetugasbulanan');
+    Route::delete('/deletetugasbulanan/{id}', [tugasbulananController::class, 'deletetugasbulanan'])->name('deletetugasbulanan');
 
     
     // BANNER INFO
