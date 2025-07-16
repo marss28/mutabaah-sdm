@@ -7,9 +7,9 @@
                 <div class="d-flex justify-content-between align-items-center me-4">
                 <h5 class="card-header">Banner Info</h5>
                 <a href="{{ route('formbannerinfo') }}" class="btn btn-primary btn-rounded">+ Tambah Data</a>
-                
+
                 </div>
-                
+
                 <div class="table-responsive text-nowrap mt-3">
                   <table class="table table-striped">
                     <thead>
@@ -32,7 +32,7 @@
                         <td> {{ $no++ }} </td>
                         <td> {{ $items->nama_banner }} </td>
                         <td>
-                          <img src="{{ asset('storage/' . $items->foto) }}" alt="{{ $items->nama_banner }}" width="200">
+                            <img src="{{ asset('storage/' . $items->foto) }}" alt="{{ $items->nama_banner }}" width="200">
                         </td>
                         <td>
                           <div class="dropdown">
