@@ -73,7 +73,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="dashboard.blade.php" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -125,7 +125,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Mutaba'ah</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -140,7 +140,14 @@
             <li class="menu-item active">
               <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Dashboard Admin</div>
+              </a>
+            </li>
+
+            <li class="menu-item active">
+              <a href="{{ route('dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard User</div>
               </a>
             </li>
 
@@ -158,11 +165,27 @@
   </a>
 </li>
 
+{{-- Data Tugas Harian --}}
+<li class="menu-item">
+  <a href="#" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+    <div data-i18n="Daily Tasks">Data Tugas Harian</div>
+  </a>
+</li>
+
 <!-- Tugas Mingguan -->
 <li class="menu-item">
   <a href="{{ route('tugasmingguan')}}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-week"></i>
     <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
+  </a>
+</li>
+
+{{-- Data Tugas Harian --}}
+<li class="menu-item">
+  <a href="{{ route('tugasmingguan')}}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-week"></i>
+    <div data-i18n="Weekly Tasks">Data Tugas Mingguan</div>
   </a>
 </li>
 
@@ -174,6 +197,14 @@
   </a>
 </li>
 
+{{-- Data Tugas Bulanan --}}
+<li class="menu-item">
+  <a href="{{ route('tugasbulanan') }}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+    <div data-i18n="Monthly Tasks">Data Tugas Bulanan</div>
+  </a>
+</li>
+
 <!-- Banner Info -->
 <li class="menu-item">
   <a href="{{ route('bannerinfo') }}" class="menu-link">
@@ -181,6 +212,7 @@
     <div data-i18n="Banner Info">Banner Info</div>
   </a>
 </li>
+
 
           
         </aside>
@@ -202,18 +234,19 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."
-                  />
-                </div>
-              </div>
-              <!-- /Search -->
+             <div class="navbar-nav align-items-center">
+              <form action="{{ route('tugas.search') }}" method="GET" class="d-flex align-items-center">
+               <i class="bx bx-search fs-4 lh-0 me-2"></i>
+                 <input
+                   type="text"
+                   name="keyword"
+                   class="form-control border-0 shadow-none"
+                   placeholder="Search..."
+                   aria-label="Search"
+                   />
+              </form>
+            </div>
+
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
@@ -318,5 +351,40 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: '<h1 style="color:black; font-weight:bold;">Sukses!</h1>',
+                html: '<p style="color:black;">{{ session('success') }}</p>',
+                icon: 'success',
+                confirmButtonText: 'Oke'
+            })
+        </script>
+    @endif
+
+
+    @if (session('sukses'))
+        <script>
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                html: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "Data Berhasil Disimpan", "success");
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "Data Gagal Disimpan", "info");
+                }
+            });
+        </script>
+    @endif
+
+
   </body>
 </html>

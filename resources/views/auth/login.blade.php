@@ -166,12 +166,12 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Mutaba'ah</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-              <p class="mb-4">Please sign-in to your account and start the adventure</p>
+              <h4 class="mb-2 text-center">Selamat Datang 👋</h4>
+              <p class="mb-3 text-center">Silakan login untuk melanjutkan aktivitasmu</p>
 
                <form method="POST" action="{{ route('login') }}">
                     @csrf

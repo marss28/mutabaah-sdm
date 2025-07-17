@@ -144,9 +144,17 @@
             <li class="menu-item active">
               <a href="index.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
             </li>
+
+            <li class="menu-item active">
+              <a href="index.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard User</div>
+              </a>
+            </li>
+
 
             <!-- Layouts -->
            
@@ -162,6 +170,14 @@
   </a>
 </li>
 
+{{-- Data Tugas Harian --}}
+<li class="menu-item">
+  <a href="#" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+    <div data-i18n="Daily Tasks">Data Tugas Harian</div>
+  </a>
+</li>
+
 <!-- Tugas Mingguan -->
 <li class="menu-item">
   <a href="{{ route('tugasmingguan')}}" class="menu-link">
@@ -170,7 +186,23 @@
   </a>
 </li>
 
+{{-- Data Tugas Harian --}}
+<li class="menu-item">
+  <a href="{{ route('tugasmingguan')}}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-week"></i>
+    <div data-i18n="Weekly Tasks">Data Tugas Mingguan</div>
+  </a>
+</li>
+
 <!-- Tugas Bulanan -->
+<li class="menu-item">
+  <a href="{{ route('tugasbulanan') }}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+    <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
+  </a>
+</li>
+
+{{-- Data Tugas Bulanan --}}
 <li class="menu-item">
   <a href="{{ route('tugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
@@ -290,12 +322,12 @@
               </ul>
             </div>
           </nav>
+        
           <div class="content-wrapper">
             @yield('konten')
             </div>
 
             
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('template-admin/sneat-1.0.0') }}/assets/vendor/libs/jquery/jquery.js"></script>

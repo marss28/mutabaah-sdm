@@ -1,8 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TugasController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\tugasbulananController;
 use App\Http\Controllers\BannerinfoController;
+use App\Http\Controllers\tugasbulananController;
 use App\Http\Controllers\TugasmingguanController;
 
 
@@ -32,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('storebannerinfo', [BannerinfoController::class, 'storebanner'])->name('storebanner');
     Route::get('/editbanner/{id}', [BannerinfoController::class, 'editbanner'])->name('editbanner');
     Route::put('/updatebanner/{id}', [BannerinfoController::class, 'updatebanner'])->name('updatebanner');
-    Route::get('/deletebanner/{id}', [BannerinfoController::class, 'deletebanner'])->name('deletebanner');
+    Route::delete('/deletebanner/{id}', [BannerinfoController::class, 'deletebanner'])->name('deletebanner');
 
 
 
@@ -42,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/edittugasmingguan/{id}', [TugasmingguanController::class, 'edittugasmingguan'])->name('edittugasmingguan');
     Route::put('/updatetugasmingguan/{id}', [TugasmingguanController::class,  'updatetugasmingguan'])->name('updatetugasmingguan');
     Route::delete('/deletetugasmingguan/{id}', [TugasmingguanController::class, 'deletetugasmingguan'])->name('deletetugasmingguan');
+
+    Route::get('/tugas/search', [TugasController::class, 'search'])->name('tugas.search');
+
 
 
     Route::get('/user', function(){
