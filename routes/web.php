@@ -28,6 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/edittugasbulanan/{id}', [tugasbulananController::class, 'edittugasbulanan'])->name('edittugasbulanan');
     Route::put('/updatetugasbulanan/{id}', [tugasbulananController::class, 'updatetugasbulanan'])->name('updatetugasbulanan');
     Route::delete('/deletetugasbulanan/{id}', [tugasbulananController::class, 'deletetugasbulanan'])->name('deletetugasbulanan');
+    
+
+    // DATA TUGAS BULANAN
+    Route::get('/datatugasbulanan', [datatugasbulananController::class, 'index'])->name('datatugasbulanan');
+    Route::get('/formdatatugasbulanan', [datatugasbulananController::class, 'formdatatugasbulanan'])->name('formdatatugasbulanan');
 
     
     // BANNER INFO
