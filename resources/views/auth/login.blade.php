@@ -137,41 +137,16 @@
                           id="path-5"
                         ></path>
                       </defs>
-                      <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
-                          <g id="Icon" transform="translate(27.000000, 15.000000)">
-                            <g id="Mask" transform="translate(0.000000, 8.000000)">
-                              <mask id="mask-2" fill="white">
-                                <use xlink:href="#path-1"></use>
-                              </mask>
-                              <use fill="#696cff" xlink:href="#path-1"></use>
-                              <g id="Path-3" mask="url(#mask-2)">
-                                <use fill="#696cff" xlink:href="#path-3"></use>
-                                <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
-                              </g>
-                              <g id="Path-4" mask="url(#mask-2)">
-                                <use fill="#696cff" xlink:href="#path-4"></use>
-                                <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
-                              </g>
-                            </g>
-                            <g
-                              id="Triangle"
-                              transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
-                            >
-                              <use fill="#696cff" xlink:href="#path-5"></use>
-                              <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
-                            </g>
-                          </g>
-                        </g>
-                      </g>
+                     <img src="{{ asset('/logo.png') }}" alt="Logo Mutaba'ah SDM" width="85" height="85" style="margin-left: -20px; margin-right: -20px; margin-top: -20px; margin-bottom: -20px;" />
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Mutaba'ah</span>
+                  <span class="app-brand-text demo text-body fw-bolder" style="margin-left: -10px; margin-bottom: -20px">Mutaba'ah</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2 text-center">Selamat Datang 👋</h4>
-              <p class="mb-3 text-center">Silakan login untuk melanjutkan aktivitasmu</p>
+              <h4 class="text-center" style="margin-top: -10px; margin-bottom: -10px;">Selamat Datang 👋</h4>
+
+              <p class="mb-3 text-center" style="margin-bottom: -20px; margin-top: 15px;">Silakan login untuk melanjutkan aktivitasmu</p>
 
                <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -184,10 +159,6 @@
                     <input type="password" name="password" class="form-control p_input">
                   </div>
                   <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> Remember Me </label>
-                  </div>
                 </div>
                 <div class="mb-3">
                   <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
@@ -206,14 +177,7 @@
 
     <!-- / Content -->
 
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
+  
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

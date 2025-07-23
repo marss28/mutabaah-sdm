@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tugas;
+use App\Models\bannerinfo;
+use App\Models\tugasbulanan;
 use Illuminate\Http\Request;
+use App\Models\Tugasmingguan;
 
 class TugasController extends Controller
 {
@@ -11,11 +14,18 @@ class TugasController extends Controller
 {
     $keyword = $request->keyword;
 
-    $data = Tugas::where('data_tugas_mingguan', 'like', "%$keyword%")
-                 ->orWhere('deskripsi', 'like', "%$keyword%")
-                 ->get();
+    // $tugasHarian = TugasHarian::where('judul', 'like', "%$keyword%")
+    //                 ->orWhere('deskripsi', 'like', "%$keyword%")->get();
 
-    return view('back.tugassearch', compact('data', 'keyword'));
+    $Tugasmingguan = Tugasmingguan::where('data_tugas_mingguan', 'like', "%$keyword%")
+                    ->orWhere('deskripsi', 'like', "%$keyword%")->get();
+
+    $tugasBulanan = tugasbulanan::where('judul', 'like', "%$keyword%")
+                    ->orWhere('deskripsi', 'like', "%$keyword%")->get();
+
+    $banners = bannerinfo::where('nama_banner', 'like', "%$keyword%")->get();
+
+    return view('back.tugassearch', compact('tugasHarian', 'tugasMingguan', 'tugasBulanan', 'banners', 'keyword'));
 }
 
 }

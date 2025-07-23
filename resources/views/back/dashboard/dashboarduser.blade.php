@@ -164,9 +164,9 @@
 
 <!-- Tugas Harian -->
 <li class="menu-item">
-  <a href="{{ route('datatugasharian') }}" class="menu-link">
+  <a href="{{ route('tugasharian') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
+    <div data-i18n="Daily Tasks">Tugas Harian</div>
   </a>
 </li>
 
@@ -273,9 +273,15 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{ route('profile.update') }}">
+                      <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle" >My Profile</span>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
                       </a>
                     </li>
                     <li>

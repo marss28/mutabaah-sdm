@@ -138,14 +138,14 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="{{ route('dashboard') }}" class="menu-link">
+              <a href="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
             </li>
 
             <li class="menu-item active">
-              <a href="{{ route('dashboard') }}" class="menu-link">
+              <a href="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard User</div>
               </a>
@@ -159,19 +159,13 @@
 
 <!-- Tugas Harian -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('datatugasharian') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Tugas Harian</div>
+    <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
   </a>
 </li>
 
-{{-- Data Tugas Harian --}}
-<li class="menu-item">
-  <a href="#" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Data Tugas Harian</div>
-  </a>
-</li>
+
 
 <!-- Tugas Mingguan -->
 <li class="menu-item">
@@ -181,13 +175,7 @@
   </a>
 </li>
 
-{{-- Data Tugas Harian --}}
-<li class="menu-item">
-  <a href="{{ route('tugasmingguan')}}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-week"></i>
-    <div data-i18n="Weekly Tasks">Data Tugas Mingguan</div>
-  </a>
-</li>
+
 
 <!-- Tugas Bulanan -->
 <li class="menu-item">
@@ -197,13 +185,7 @@
   </a>
 </li>
 
-{{-- Data Tugas Bulanan --}}
-<li class="menu-item">
-  <a href="{{ route('tugasbulanan') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-    <div data-i18n="Monthly Tasks">Data Tugas Bulanan</div>
-  </a>
-</li>
+
 
 <!-- Banner Info -->
 <li class="menu-item">
@@ -294,12 +276,7 @@
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
+                    
                    <li>
                <div class="dropdown-divider"></div>
 
