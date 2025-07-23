@@ -77,9 +77,10 @@
                     </table>
 
 
-                    <div class="d-flex justify-content-center">
-                        {{ $datatugasharian->links() }}
-                      </div>
+                    <div class="d-flex justify-content-center small-pagination mt-5">
+                    {{ $datatugasharian->links('pagination::bootstrap-5') }}
+
+                   </div>
 
                     </div>
                   </div>
