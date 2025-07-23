@@ -73,7 +73,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="dashboard.blade.php" class="app-brand-link">
+            <a href="index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -83,6 +83,10 @@
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <defs>
+                    <path
+                      d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
+                      id="path-1"
+                    ></path>
                     <path
                       d="M5.47320593,6.00457225 C4.05321814,8.216144 4.36334763,10.0722806 6.40359441,11.5729822 C8.61520715,12.571656 10.0999176,13.2171421 10.8577257,13.5094407 L15.5088241,14.433041 L18.6192054,7.984237 C15.5364148,3.11535317 13.9273018,0.573395879 13.7918663,0.358365126 C13.5790555,0.511491653 10.8061687,2.3935607 5.47320593,6.00457225 Z"
                       id="path-3"
@@ -138,7 +142,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="" class="menu-link">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
@@ -151,6 +155,7 @@
               </a>
             </li>
 
+
             <!-- Layouts -->
            
           <li class="menu-header small text-uppercase">
@@ -159,9 +164,9 @@
 
 <!-- Tugas Harian -->
 <li class="menu-item">
-  <a href="{{ route('datatugasharian') }}" class="menu-link">
+  <a href="{{ route('tugasharian') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
+    <div data-i18n="Daily Tasks">Tugas Harian</div>
   </a>
 </li>
 
@@ -186,7 +191,6 @@
 </li>
 
 
-
 <!-- Banner Info -->
 <li class="menu-item">
   <a href="{{ route('bannerinfo') }}" class="menu-link">
@@ -194,7 +198,6 @@
     <div data-i18n="Banner Info">Banner Info</div>
   </a>
 </li>
-
 
           
         </aside>
@@ -216,19 +219,18 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-             <div class="navbar-nav align-items-center">
-              <form action="{{ route('tugas.search') }}" method="GET" class="d-flex align-items-center">
-               <i class="bx bx-search fs-4 lh-0 me-2"></i>
-                 <input
-                   type="text"
-                   name="keyword"
-                   class="form-control border-0 shadow-none"
-                   placeholder="Search..."
-                   aria-label="Search"
-                   />
-              </form>
-            </div>
-
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search..."
+                    aria-label="Search..."
+                  />
+                </div>
+              </div>
+              <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
@@ -276,37 +278,37 @@
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
-                    
-                   <li>
-               <div class="dropdown-divider"></div>
-
- <form method="POST" action="{{ route('logout') }}">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                     <form method="POST" action="{{ route('logout') }}">
   @csrf
   <button type="submit" class="dropdown-item preview-item">
     <i class="bx bx-power-off me-2"></i>
     <span class="align-middle">Log Out</span>
   </button>
 </form>
-
-    </li>
-
+                      </a>
+                    </li>
                   </ul>
                 </li>
                 <!--/ User -->
               </ul>
             </div>
           </nav>
-
+        
           <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
             @yield('konten')
             </div>
-          </div>
-            </div>
-
 
             
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('template-admin/sneat-1.0.0') }}/assets/vendor/libs/jquery/jquery.js"></script>
@@ -328,40 +330,5 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                title: '<h1 style="color:black; font-weight:bold;">Sukses!</h1>',
-                html: '<p style="color:black;">{{ session('success') }}</p>',
-                icon: 'success',
-                confirmButtonText: 'Oke'
-            })
-        </script>
-    @endif
-
-
-    @if (session('sukses'))
-        <script>
-            Swal.fire({
-                title: "Do you want to save the changes?",
-                html: "Do you want to save the changes?",
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: "Save",
-                denyButtonText: `Don't save`
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    Swal.fire("Saved!", "Data Berhasil Disimpan", "success");
-                } else if (result.isDenied) {
-                    Swal.fire("Changes are not saved", "Data Gagal Disimpan", "info");
-                }
-            });
-        </script>
-    @endif
-
-
   </body>
 </html>

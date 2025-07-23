@@ -142,11 +142,19 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
             </li>
+
+            <li class="menu-item active">
+              <a href="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard User</div>
+              </a>
+            </li>
+
 
             <!-- Layouts -->
            
@@ -156,11 +164,13 @@
 
 <!-- Tugas Harian -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('datatugasharian') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Tugas Harian</div>
+    <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
   </a>
 </li>
+
+
 
 <!-- Tugas Mingguan -->
 <li class="menu-item">
@@ -170,19 +180,13 @@
   </a>
 </li>
 
+
+
 <!-- Tugas Bulanan -->
 <li class="menu-item">
   <a href="{{ route('tugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
     <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
-  </a>
-</li>
-
-<!-- Tugas Bulanan -->
-<li class="menu-item">
-  <a href="{{ route('datatugasbulanan') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-    <div data-i18n="Monthly Tasks">Data Tugas Bulanan</div>
   </a>
 </li>
 
@@ -268,15 +272,9 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.update') }}">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
+                        <span class="align-middle" >My Profile</span>
                       </a>
                     </li>
                     <li>
@@ -298,12 +296,12 @@
               </ul>
             </div>
           </nav>
+        
           <div class="content-wrapper">
             @yield('konten')
             </div>
 
             
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('template-admin/sneat-1.0.0') }}/assets/vendor/libs/jquery/jquery.js"></script>
