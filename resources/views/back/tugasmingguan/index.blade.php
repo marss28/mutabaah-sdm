@@ -30,28 +30,28 @@
  
                     <tr>
                       <td> {{ $no++}} </td>
-                      <td> {{ $items->data_tugas_mingguan}}</td>
+                      <td> {{ $items->dataTugas->nama_tugas }}</td>
                       <td> {{ $items->waktu_tugas}}</td>
                       <td> {{ $items->deskripsi}}</td>
                       <td>
-                        <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
+                      <div class="dropdown ms-1">
+                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                          <i class="bx bx-dots-vertical-rounded fs-4"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{{ route('edittugasmingguan', $items->id) }}">
+                            <i class="bx bx-edit-alt me-1"></i> Edit
+                          </a>
+                          <form action="{{ route('deletetugasmingguan', $items->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="dropdown-item text-danger">
+                              <i class="bx bx-trash me-1"></i> Delete
                             </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="{{ route('edittugasmingguan', $items->id ) }}"
-                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                              >
-                              <form action="{{ route('deletetugasmingguan', $items->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="dropdown-item text-danger">
-                                    <i class="bx bx-trash me-1"></i> Delete
-                                </button>
-                            </form>
-                            </div>
-                          </div>
-                      </td>
+                          </form>
+                        </div>
+                      </div>
+                    </td>
 
                     </tr>
                     @endforeach

@@ -25,8 +25,20 @@
                     <input type="text" name="deskripsi" class="form-control" value="{{ $data->deskripsi }}">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Kirim</button>
-            </form>
+                <div class="form-group">
+                <label for="kategori_id">Nama Tugas Mingguan</label>
+                <select name="data_tugas_mingguan" class="form-control">
+                    @foreach ($datatugasmingguan as $item)
+                        <option value="{{ $item->id }}" {{ $data->data_tugas_mingguan == $item->id ? 'selected' : '' }}>
+                            {{ $item->nama_tugas }}
+                        </option>
+                    @endforeach
+                </select>
+                </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <a href="{{ route('tugasmingguan') }}" class="btn btn-dark">Cancel</a>
+
+
             </div>
         </div>
     </div>

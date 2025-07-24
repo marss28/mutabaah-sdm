@@ -100,33 +100,8 @@
                       id="path-5"
                     ></path>
                   </defs>
-                  <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
-                      <g id="Icon" transform="translate(27.000000, 15.000000)">
-                        <g id="Mask" transform="translate(0.000000, 8.000000)">
-                          <mask id="mask-2" fill="white">
-                            <use xlink:href="#path-1"></use>
-                          </mask>
-                          <use fill="#696cff" xlink:href="#path-1"></use>
-                          <g id="Path-3" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-3"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
-                          </g>
-                          <g id="Path-4" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-4"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
-                          </g>
-                        </g>
-                        <g
-                          id="Triangle"
-                          transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
-                        >
-                          <use fill="#696cff" xlink:href="#path-5"></use>
-                          <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
-                        </g>
-                      </g>
-                    </g>
-                  </g>
+                  <img src="{{ asset('images/logo.png') }}" alt="Logo Mutaba'ah SDM" width="80" height="80" style="margin-top: -20px; margin-right: -20px; margin-left: -20px">
+
                 </svg>
               </span>
               <span class="app-brand-text demo menu-text fw-bolder ms-2">Mutaba'ah</span>
@@ -169,6 +144,15 @@
     <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
   </a>
 </li>
+
+<!--  Data Tugas Mingguan -->
+<li class="menu-item">
+  <a href="{{ route('datatugasmingguan')}}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-week"></i>
+    <div data-i18n="Weekly Tasks">Nama Tugas Mingguan</div>
+  </a>
+</li>
+
 
 <!-- Tugas Bulanan -->
 <li class="menu-item">
@@ -290,9 +274,53 @@
               </ul>
             </div>
           </nav>
+
+          <div class="container mt-3">
+          <div class="card mt-4">
+                <h5 class="card-header">Data Mutaba'ah</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th> Tugas Harian</th>
+                        <th> Tugas Mingguan</th>
+                        <th> Tugas Bulanan</th>
+                        <th> Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>
+                          {{-- <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="javascript:void(0);"
+                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                              >
+                              <a class="dropdown-item" href="javascript:void(0);"
+                                ><i class="bx bx-trash me-1"></i> Delete</a
+                              >
+                            </div>
+                          </div> --}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
           <div class="content-wrapper">
             @yield('konten')
             </div>
+
+
 
             
 
