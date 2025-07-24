@@ -25,22 +25,22 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'adminMiddleware'])->group(function () {
 
-    
 
-   
-   
-    
+
+
+
+
     // BANNER INFO
-    
 
 
-    
+
+
 
     Route::get('/tugas/search', [TugasController::class, 'search'])->name('tugas.search');
 
 
 
-    
+
 
 });
 Route::get('/user', function(){
@@ -50,12 +50,12 @@ Route::get('/user', function(){
 
 
 Route::middleware(['auth', 'userMiddleware'])->group(function () {
+    
     Route::get('/userdashboard', [DashboardController::class, 'Userindex']);
-    
-    
+
      // TUGAS BULANAN
     Route::get('/tugasbulanan', [tugasbulananController::class, 'index'])->name('tugasbulanan');
-    Route::get('/formtugasbulanan', [tugasbulananController::class, 'formtugasbulanan'])->name('formtugasbulanan'); 
+    Route::get('/formtugasbulanan', [tugasbulananController::class, 'formtugasbulanan'])->name('formtugasbulanan');
     Route::post('/storetugasbulanan', [tugasbulananController::class, 'storetugasbulanan'])->name('storetugasbulanan');
     Route::get('/edittugasbulanan/{id}', [tugasbulananController::class, 'edittugasbulanan'])->name('edittugasbulanan');
     Route::put('/updatetugasbulanan/{id}', [tugasbulananController::class, 'updatetugasbulanan'])->name('updatetugasbulanan');
@@ -100,7 +100,7 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
 });
 
 
-    
+
 
 
 
