@@ -7,15 +7,15 @@
         <div class="card mb-4">
             <h5 class="card-header">Edit Data</h5>
             <div class="card-body">
-                <form id="form-edit" method="POST" action="{{ route('updatetugasmingguan', $data->id) }}">
+                <form id="form-edit" method="POST" action="{{ route('updatetugasharian', $data->id) }}">
                     @csrf
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label>Data Tugas Mingguan</label>
-                        <input type="text" name="data_tugas_mingguan" class="form-control" 
-                               value="{{ $data->data_tugas_mingguan }}" 
-                               data-original="{{ $data->data_tugas_mingguan }}">
+                        <label>Data Tugas Harian</label>
+                        <input type="text" name="data_tugas_harian" class="form-control" 
+                               value="{{ $data->data_tugas_harian }}" 
+                               data-original="{{ $data->data_tugas_harian }}">
                     </div>
 
                     <div class="mb-3">
@@ -31,19 +31,6 @@
                                value="{{ $data->deskripsi }}" 
                                data-original="{{ $data->deskripsi }}">
                     </div>
-
-                <div class="form-group">
-                <label for="kategori_id">Nama Tugas Mingguan</label>
-                <select name="data_tugas_mingguan" class="form-control">
-                    @foreach ($datatugasmingguan as $item)
-                        <option value="{{ $item->id }}" {{ $data->data_tugas_mingguan == $item->id ? 'selected' : '' }}>
-                            {{ $item->nama_tugas }}
-                        </option>
-                    @endforeach
-                </select>
-                </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a href="{{ route('tugasmingguan') }}" class="btn btn-dark">Cancel</a>
 
                     <button type="submit" class="btn btn-primary">Kirim</button>
                 </form>

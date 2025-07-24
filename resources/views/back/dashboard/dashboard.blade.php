@@ -117,11 +117,19 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
             </li>
+
+            <li class="menu-item active">
+              <a href="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard User</div>
+              </a>
+            </li>
+
 
             <!-- Layouts -->
            
@@ -131,11 +139,13 @@
 
 <!-- Tugas Harian -->
 <li class="menu-item">
-  <a href="#" class="menu-link">
+  <a href="{{ route('datatugasharian') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Tugas Harian</div>
+    <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
   </a>
 </li>
+
+
 
 <!-- Tugas Mingguan -->
 <li class="menu-item">
@@ -144,15 +154,6 @@
     <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
   </a>
 </li>
-
-<!--  Data Tugas Mingguan -->
-<li class="menu-item">
-  <a href="{{ route('datatugasmingguan')}}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-week"></i>
-    <div data-i18n="Weekly Tasks">Nama Tugas Mingguan</div>
-  </a>
-</li>
-
 
 <!-- Tugas Bulanan -->
 <li class="menu-item">
@@ -244,15 +245,9 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.update') }}">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
+                        <span class="align-middle" >My Profile</span>
                       </a>
                     </li>
                     <li>
@@ -274,53 +269,9 @@
               </ul>
             </div>
           </nav>
-
-          <div class="container mt-3">
-          <div class="card mt-4">
-                <h5 class="card-header">Data Mutaba'ah</h5>
-                <div class="table-responsive text-nowrap">
-                  <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                        <th> Tugas Harian</th>
-                        <th> Tugas Mingguan</th>
-                        <th> Tugas Bulanan</th>
-                        <th> Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>
-                          {{-- <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-1"></i> Delete</a
-                              >
-                            </div>
-                          </div> --}}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
           <div class="content-wrapper">
             @yield('konten')
             </div>
-
-
 
             
 

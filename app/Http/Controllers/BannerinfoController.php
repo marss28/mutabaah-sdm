@@ -9,7 +9,7 @@ use App\Models\bannerinfo;
 class BannerinfoController extends Controller
 {
     public function index(){
-        $bannerinfo = bannerinfo::paginate(5);
+        $bannerinfo = bannerinfo::paginate(2);
         return view('back.bannerinfo.index', compact('bannerinfo'));
     }
 
@@ -73,6 +73,6 @@ class BannerinfoController extends Controller
 
         $bannerinfo = bannerinfo::findOrFail($id);
         $bannerinfo->delete();
-        return redirect()->route('bannerinfo');
+        return redirect()->route('bannerinfo')->with('success', 'Banner berhasil dihapus!');
     }
 }

@@ -10,7 +10,7 @@
             </div>
 
             {{-- FORM dimulai di sini --}}
-            <form method="POST" action="{{ route('storetugasbulanan') }}">
+            <form method="POST" action="{{ route('storetugasharian') }}">
                 @csrf
                 <div class="card-body">
 
@@ -26,9 +26,9 @@
                     @endif
 
                     <div class="mb-3">
-                        <label class="form-label">Data Tugas Bulanan</label>
-                        <input type="text" name="data_tugas_bulanan" class="form-control" placeholder="Data Tugas Bulanan..." value="{{ old('data_tugas_bulanan') }}">
-                        @error('data_tugas_bulanan')
+                        <label class="form-label">Data Tugas harian</label>
+                        <input type="text" name="data_tugas_harian" class="form-control" placeholder="Data Tugas harian..." value="{{ old('data_tugas_harian') }}">
+                        @error('data_tugas_harian')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

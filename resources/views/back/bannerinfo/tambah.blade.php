@@ -11,19 +11,22 @@
           @csrf
           
           <div class="mb-3">
-            <label class="form-label" for="basic-default-fullname">Nama Banner</label>
+            <label class="form-label mt-3" for="basic-default-fullname">Nama Banner</label>
+            
+            <input type="text" name="nama_banner" class="form-control" id="basic-default-fullname" placeholder="Nama Banner..." value="{{ old('nama_banner') }}" />
+
             @error('nama_banner')
               <div class="text-danger mb-1">{{ $message }}</div>
             @enderror
-            <input type="text" name="nama_banner" class="form-control" id="basic-default-fullname" placeholder="Nama Banner..." value="{{ old('nama_banner') }}" />
           </div>
 
           <div class="mb-3">
             <label class="form-label" for="basic-default-company">Foto</label>
-            @error('foto')
+           
+            <input type="file" name="foto" class="form-control" id="basic-default-company" />
+             @error('foto')
               <div class="text-danger mb-1">{{ $message }}</div>
             @enderror
-            <input type="file" name="foto" class="form-control" id="basic-default-company" />
           </div>
 
           <button type="submit" class="btn btn-primary">Kirim</button>

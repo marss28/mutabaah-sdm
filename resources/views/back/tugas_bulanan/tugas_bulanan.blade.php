@@ -52,10 +52,11 @@
             </table>
         </div>
 
-        <div class="mt-3 ms-2">
-            {{ $tugasbulanan->links() }}
-        </div>
-    </div>
-</div>
-
+                  <div class="d-flex justify-content-center">
+                        {{ $tugasbulanan->links() }}
+                      </div>
+                </div>
+                </div>
+              </div>
+              </div>
 @endsection
