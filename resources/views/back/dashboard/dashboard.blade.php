@@ -288,8 +288,7 @@
                   <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                       <div class="card-title mb-0">
-                        <h5 class="m-0 me-2">Order Statistics</h5>
-                        <small class="text-muted">42.82k Total Sales</small>
+                        <h5 class="m-0 me-2">Grafik Tugas</h5>
                       </div>
                       <div class="dropdown">
                         <button
@@ -302,79 +301,57 @@
                         >
                           <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-                          <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-                          <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                          <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                        </div>
                       </div>
                     </div>
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="d-flex flex-column align-items-center gap-1">
-                          <h2 class="mb-2">8,258</h2>
-                          <span>Total Orders</span>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-center align-items-center mb-3">
+                          <div class="d-flex flex-column align-items-center gap-1">
+                            <!-- bisa tambahkan judul kalau mau -->
+                          </div>
+                          <div id="orderStatisticsChart" style="margin-left: 4px"></div>
                         </div>
-                        <div id="orderStatisticsChart"></div>
                       </div>
                       <ul class="p-0 m-0">
-                        <li class="d-flex mb-4 pb-1">
+                        <li class="d-flex mb-4 pb-1" style="margin-left: 10px">
                           <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-primary"
-                              ><i class="bx bx-mobile-alt"></i
-                            ></span>
+                            <span class="avatar-initial rounded bg-label-primary" >
+                             <i class="menu-icon tf-icons bx bx-calendar-check" style="margin-left: 8px"></i>
+                            </span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Electronic</h6>
-                              <small class="text-muted">Mobile, Earbuds, TV</small>
+                              <h6 class="mb-0">Data Tugas Harian</h6>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">82.5k</small>
+                              <small class="fw-semibold"></small>
                             </div>
                           </div>
                         </li>
                         <li class="d-flex mb-4 pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
+                          <div class="avatar flex-shrink-0 me-3" style="margin-left: 10px">
+                            <span class="avatar-initial rounded bg-label-success">
+                            <i class="menu-icon tf-icons bx bx-calendar-check" style="margin-left: 8px"></i></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Fashion</h6>
-                              <small class="text-muted">T-shirt, Jeans, Shoes</small>
+                              <h6 class="mb-0">Data Tugas Mingguan</h6>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">23.8k</small>
+                              <small class="fw-semibold"></small>
                             </div>
                           </div>
                         </li>
                         <li class="d-flex mb-4 pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
+                          <div class="avatar flex-shrink-0 me-3" style="margin-left: 10px">
+                            <span class="avatar-initial rounded bg-label-info">
+                          <i class="menu-icon tf-icons bx bx-calendar-event"style="margin-left: 8px"></i></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">Decor</h6>
-                              <small class="text-muted">Fine Art, Dining</small>
+                              <h6 class="mb-0">Data Tugas Bulanan</h6>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">849k</small>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="d-flex">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-secondary"
-                              ><i class="bx bx-football"></i
-                            ></span>
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <h6 class="mb-0">Sports</h6>
-                              <small class="text-muted">Football, Cricket Kit</small>
-                            </div>
-                            <div class="user-progress">
-                              <small class="fw-semibold">99</small>
+                              <small class="fw-semibold"></small>
                             </div>
                           </div>
                         </li>
@@ -382,26 +359,6 @@
                     </div>
                   </div>
                 </div>
-                <!--/ Order Statistics -->
-
-          <div class="card" style="margin-top: 30px">
-                <h5 class="card-header">Data Tugas</h5>
-                <div class="table-responsive text-nowrap">
-                  <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                        <th>Tugas Harian</th>
-                        <th>Tugas Mingguan</th>
-                        <th>Tugas Bulanan</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-          </div>
             </div>
 
             
