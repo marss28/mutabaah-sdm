@@ -1,50 +1,89 @@
 @extends('template.belakang')
 
 @section('konten')
-<div class="row">
-    <div class="col-12 grid-margin">
-        <div class="card">
-            <div class="card-body">
+            <div class="row ">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="card-tittle"> Data tugas Bulanan</h4>
-                    <a href="{{ route('formdatatugasbulanan') }}" class="btn btn-primary btn-rounded"> + Tambah Data</a>
-                </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Nama Tugas Bulanan</h4>
+                    <a href="{{ route('formdatatugasbulanan') }}" class="btn btn-primary btn-rounded">+ Tambah Data</a>
+                    </div>
 
-                <div class="table-responsiv">
-                    <table class="table">
+
+                    <div class="table-responsive">
+                      <table class="table">
                         <thead>
-                            <tr> No </tr>
-                            <tr> Data Tugas Bulanan</tr>
-                            <tr> Waktu Tugas</tr>
-                            <tr> Deskripsi</tr>
-                            <tr> Aksi</tr>
+                          <tr>
+                            <th>No</th>
+                            <th>Nama Tugas Bulanan</th>
+                            <th>Aksi</th>
+                          </tr>
                         </thead>
-                    <tbody>
-                            @foreach ($datatugasbulanan as $index => $datatugasbulanan)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $datatugasbulanan->datatugasbulanan }}</td>
-                                    <td>
-                                        <a href="{{ route('editdatatugasbulanan', $datatugasbulanan->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <tbody>
 
-                                        <form action="{{ route('deletedatatugasbulanan'), $datatugasbulanan->id }}" method="POST" style="display:inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Ingin Menghapus')">Hapus</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                          @php
+                            $no = 1;
+                          @endphp
+
+                        @foreach($datatugasbulanan as $item)
+                        
+                        <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $item->tugas_bulanan }}</td>
+                       <td class="position-relative">
+                        <div class="dropdown dropdown-menu-end" >
+                          <style>
+                            .table-responsive {
+                              overflow: initial; /* lebih aman daripada visible */
+                            }
+
+                            .dropdown-menu {
+                              z-index: 9999 !important;
+                            }
+
+                            td.position-relative {
+                              position: relative;
+                            }
+                          </style>
+
+                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                          </button>
+                          <ul class="dropdown-menu" style="z-index: 9999;">
+                            <li>
+                              <a class="dropdown-item" href="{{ route('editdatatugasbulanan', $item->id) }}" class="btn btn-warning">Edit</a>
+                              </a>
+                            </li>
+                            <li>
+                              <form action="{{ route('deletedatatugasbulanan', $item->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="dropdown-item text-danger">
+                                  <i class="bx bx-trash me-1"></i> Delete
+                                </button>
+                              </form>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+
+
+                    </tr>
+                    @endforeach
+                     </tbody>
                     </table>
 
-                    <div class="d-flex justify-content-center">
-                        {{ $datatugasbulanan->links() }}
+
+                    <div class="d-flex justify-content-center small-pagination mt-5">
+                    {{ $datatugasbulanan->links('pagination::bootstrap-5') }}
+
+                   </div>
+
                     </div>
-                    
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-</div>
+@endsection

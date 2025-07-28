@@ -8,7 +8,7 @@ use App\Models\tugasbulanan;
 class tugasbulananController extends Controller
 {
     public function index(){
-        $tugasbulanan = tugasbulanan::paginate(5);
+        $tugasbulanan = TugasBulanan::paginate(5);
         return view('back.tugas_bulanan.tugas_bulanan',compact('tugasbulanan'));
     }
 
@@ -27,8 +27,8 @@ class tugasbulananController extends Controller
     ]);
 
     // lanjut simpan data ke database
-        $data = $request->all();
-        tugasbulanan::create($data);
+        $tugasbulanan = $request->all();
+        tugasbulanan::create($tugasbulanan);
 
         return redirect()->route('tugasbulanan')->with('success','Data Berhasil Ditambahkan');
      }
@@ -36,16 +36,13 @@ class tugasbulananController extends Controller
 
      public function edittugasbulanan($id)
     {
-        $data = tugasbulanan::findOrFail($id);
-        return view('back.tugas_bulanan.edit', compact('data'));
+        $tugasbulanan = tugasbulanan::findOrFail($id);
+        return view('back.tugas_bulanan.edit', compact('tugasbulanan'));
     }
-
-
-
 
     public function updatetugasbulanan(Request $request, $id)
 {
-    $data = tugasbulanan::findOrFail($id);
+    $tugasbulanan = tugasbulanan::findOrFail($id);
     
     $request->validate([
         'data_tugas_bulanan' => 'required|string|min:3|max:255',
@@ -53,7 +50,7 @@ class tugasbulananController extends Controller
         'deskripsi' => 'required|string|min:3|max:255',
     ]);
 
-    $data->update([
+    $tugasbulanan->update([
         'data_tugas_bulanan' => $request->data_tugas_bulanan,
         'waktu_tugas' => $request->waktu_tugas,
         'deskripsi' => $request->deskripsi,
@@ -65,8 +62,8 @@ class tugasbulananController extends Controller
 
     public function deletetugasbulanan($id)
 {
-    $data = tugasbulanan::findOrFail($id);
-    $data->delete();
+    $tugasbulanan = tugasbulanan::findOrFail($id);
+    $tugasbulanan->delete();
 
     return redirect()->route('tugasbulanan')->with('success', 'Data berhasil dihapus');
 }

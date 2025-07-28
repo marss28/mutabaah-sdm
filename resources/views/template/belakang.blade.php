@@ -168,11 +168,11 @@
 
 
 
-<!-- Tugas Bulanan -->
+<!-- Data Tugas Bulanan -->
 <li class="menu-item">
-  <a href="{{ route('tugasbulanan') }}" class="menu-link">
+  <a href="{{ route('datatugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-    <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
+    <div data-i18n="Monthly Tasks">Nama Tugas Bulanan</div>
   </a>
 </li>
 
