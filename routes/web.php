@@ -8,6 +8,7 @@ use App\Http\Controllers\TugasharianController;
 use App\Http\Controllers\tugasbulananController;
 use App\Http\Controllers\TugasmingguanController;
 use App\Http\Controllers\DatatugasharianController;
+use App\Http\Controllers\DataTugasBulananController;
 
 
 Route::get('/', function () {
@@ -63,9 +64,13 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     
 
     // DATA TUGAS BULANAN
-    Route::get('/datatugasbulanan', [datatugasbulananController::class, 'index'])->name('datatugasbulanan');
-    Route::get('/formdatatugasbulanan', [datatugasbulananController::class, 'formdatatugasbulanan'])->name('formdatatugasbulanan');
-
+    Route::get('/datatugasbulanan', [DataTugasBulananController::class, 'index'])->name('datatugasbulanan');
+    Route::get('/formdatatugasbulanan', [DataTugasBulananController::class, 'formdatatugasbulanan'])->name('formdatatugasbulanan');
+    Route::post('/storedatatugasbulanan',[DataTugasBulananController::class, 'storedatatugasbulanan'])->name('storedatatugasbulanan');
+    Route::get('/editdatatugasbulanan/{id}', [DataTugasBulananController::class, 'editdatatugasbulanan'])->name('editdatatugasbulanan');
+    Route::put('/updatedatatugasbulanan/{id}', [DataTugasBulananController::class,  'updatedatatugasbulanan'])->name('updatedatatugasbulanan');
+    Route::delete('/deletedatatugasbulanan/{id}', [DataTugasBulananController::class, 'deletedatatugasbulanan'])->name('deletedatatugasbulanan');
+    
     Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
     Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
     Route::post('/storetugasmingguan',[TugasmingguanController::class, 'storetugasmingguan'])->name('storetugasmingguan');
