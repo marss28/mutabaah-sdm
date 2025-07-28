@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Dashboard</title>
 
     <meta name="description" content="" />
 
@@ -96,36 +96,14 @@
                       id="path-5"
                     ></path>
                   </defs>
-                  <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
-                      <g id="Icon" transform="translate(27.000000, 15.000000)">
-                        <g id="Mask" transform="translate(0.000000, 8.000000)">
-                          <mask id="mask-2" fill="white">
-                            <use xlink:href="#path-1"></use>
-                          </mask>
-                          <use fill="#696cff" xlink:href="#path-1"></use>
-                          <g id="Path-3" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-3"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
-                          </g>
-                          <g id="Path-4" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-4"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
-                          </g>
-                        </g>
-                        <g
-                          id="Triangle"
-                          transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
-                        >
-                          <use fill="#696cff" xlink:href="#path-5"></use>
-                          <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
-                        </g>
-                      </g>
-                    </g>
-                  </g>
-                </svg>
+                  
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Mutaba'ah SDM" width="80" height="80" style="margin-top: -20px; margin-right: -20px; margin-left: -20px">
+                
+                  </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Mutaba'ah</span>
+
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">mutaba'ah</span>
+
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -138,14 +116,14 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="" class="menu-link">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
             </li>
 
             <li class="menu-item active">
-              <a href="" class="menu-link">
+              <a href="{{ route('dashboarduser') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard User</div>
               </a>
@@ -165,25 +143,25 @@
   </a>
 </li>
 
+{{-- <li class="menu-item">
+  <a href="{{ route('tugasharian') }}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+    <div data-i18n="Daily Tasks">Tugas Harian</div>
+  </a>
+</li> --}}
 
 
-<!-- Tugas Mingguan -->
+<!--  Data Tugas Mingguan -->
 <li class="menu-item">
-  <a href="{{ route('tugasmingguan')}}" class="menu-link">
+  <a href="{{ route('datatugasmingguan')}}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-week"></i>
-    <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
+    <div data-i18n="Weekly Tasks">Nama Tugas Mingguan</div>
   </a>
 </li>
 
 
 
-{{-- <!-- Tugas Bulanan -->
-<li class="menu-item">
-  <a href="{{ route('tugasbulanan') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-    <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
-  </a>
-</li> --}}
+
 
 <!-- Data Tugas Bulanan -->
 <li class="menu-item">
@@ -261,17 +239,17 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.update') }}">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
                               <img src="{{ asset('template-admin/sneat-1.0.0') }}/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
-                          </div>
+                         <div class="profile-name">
+                                <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
+                                <span>{{ Auth::user()->role }}</span>
+                            </div>
                         </div>
                       </a>
                     </li>
@@ -279,7 +257,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.update') }}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>

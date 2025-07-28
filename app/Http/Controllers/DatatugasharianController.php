@@ -9,7 +9,7 @@ class DatatugasharianController extends Controller
 {
      public function index()
     {
-        $datatugasharian = datatugasharian::paginate(2);
+        $datatugasharian = datatugasharian::paginate(5);
        
         return view('back.datatugasharian.index', compact('datatugasharian'));
     }
@@ -30,7 +30,7 @@ class DatatugasharianController extends Controller
             'nama_tugas' => $request->nama_tugas,
         ]);
 
-        return redirect()->route('datatugasharian')->with('sukses', 'Nama tugas harian berhasil ditambahkan.');
+        return redirect()->route('datatugasharian')->with('success', 'Nama tugas harian berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -42,15 +42,16 @@ class DatatugasharianController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'datatugasharian' => 'required|string|max:255',
+            'nama_tugas' => 'required|string|max:255',
         ]);
 
         $datatugasharian = datatugasharian::findOrFail($id);
+
         $datatugasharian->update([
-            'datatugasharian' => $request->datatugasharian,
+            'nama_tugas' => $request->nama_tugas,
         ]);
 
-        return redirect()->route('datatugasharian')->with('sukses', 'Nama tugas harian berhasil diupdate.');
+        return redirect()->route('datatugasharian')->with('success', 'Nama tugas harian berhasil diupdate.');
     }
 
     public function destroy($id)

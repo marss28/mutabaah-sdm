@@ -27,7 +27,7 @@
                     @foreach ($tugasharian as $items)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $items->data_tugas_harian }}</td>
+                        <td>{{ $items->datatugasharian->nama_tugas ?? '-' }}</td>
                         <td>{{ $items->waktu_tugas }}</td>
                         <td>{{ $items->deskripsi }}</td>
                          <td class="position-relative">

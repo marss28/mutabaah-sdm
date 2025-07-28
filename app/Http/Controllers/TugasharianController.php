@@ -4,72 +4,76 @@ namespace App\Http\Controllers;
 
 use App\Models\Tugasharian;
 use Illuminate\Http\Request;
+use App\Models\datatugasharian;
 
 class TugasharianController extends Controller
 {
-     public function index(){
-        $tugasharian = Tugasharian::paginate(5);
-        return view('back.tugasharian.index',compact('tugasharian'));
+    // Menampilkan daftar tugas harian
+    public function index()
+    {
+        $tugasharian = Tugasharian::with('datatugasharian')->paginate(5);
+        return view('back.tugasharian.index', compact('tugasharian'));
     }
 
+    // Menampilkan form tambah data
+    public function formtugasharian()
+    {
+        $datatugasharian = datatugasharian::all();
+        return view('back.tugasharian.tambah', compact('datatugasharian'));
+    }
 
-    public function formtugasharian(){
-        return view('back.tugasharian.tambah');
-     }
+    // Menyimpan data baru
+    public function storetugasharian(Request $request)
+    {
+        $request->validate([
+            'datatugasharian_id' => 'required|exists:datatugasharian,id',
+            'waktu_tugas' => 'required|date_format:H:i',
+            'deskripsi' => 'required|string|min:3|max:255',
+        ]);
 
+        Tugasharian::create([
+            'datatugasharian_id' => $request->datatugasharian_id,
+            'waktu_tugas' => $request->waktu_tugas,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
-     public function storetugasharian(Request $request)
-{
-    $request->validate([
-        'data_tugas_harian' => 'required|string',
-        'waktu_tugas' => 'required|date_format:H:i',
-        'deskripsi' => 'required|string|min:3|max:255',
-    ]);
+        return redirect()->route('tugasharian')->with('success', 'Data berhasil ditambahkan.');
+    }
 
-    // lanjut simpan data ke database
-        $data = $request->all();
-        Tugasharian::create($data);
-
-        return redirect()->route('tugasharian')->with('success','Data Berhasil Ditambahkan');
-     }
-
-
-     public function edittugasharian($id)
+    // Menampilkan form edit data
+    public function edittugasharian($id)
     {
         $data = Tugasharian::findOrFail($id);
-        return view('back.tugasharian.edit', compact('data'));
+        $datatugasharian = datatugasharian::all();
+        return view('back.tugasharian.edit', compact('data', 'datatugasharian'));
     }
 
-
-
-
+    // Memperbarui data
     public function updatetugasharian(Request $request, $id)
-{
-    $request->validate([
-        'data_tugas_harian' => 'required|string',
-        'waktu_tugas' => 'required|date_format:H:i',
-        'deskripsi' => 'required|string|min:3|max:255',
-    ]);
+    {
+        $request->validate([
+            'datatugasharian_id' => 'required|exists:datatugasharian,id',
+            'waktu_tugas' => 'required|date_format:H:i',
+            'deskripsi' => 'required|string|min:3|max:255',
+        ]);
 
-    $data = Tugasharian::findOrFail($id);
+        $data = Tugasharian::findOrFail($id);
 
-    $data->update([
-        'data_tugas_harian' => $request->data_tugas_harian,
-        'waktu_tugas' => $request->waktu_tugas,
-        'deskripsi' => $request->deskripsi,
-    ]);
+        $data->update([
+            'datatugasharian_id' => $request->datatugasharian_id,
+            'waktu_tugas' => $request->waktu_tugas,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
-    return redirect()->route('tugasharian')->with('success', 'Data berhasil diperbarui.');
-}
+        return redirect()->route('tugasharian')->with('success', 'Data berhasil diperbarui.');
+    }
 
-
+    // Menghapus data
     public function deletetugasharian($id)
-{
-    $data = Tugasharian::findOrFail($id);
-    $data->delete();
+    {
+        $data = Tugasharian::findOrFail($id);
+        $data->delete();
 
-    return redirect()->route('tugasharian')->with('success', 'Data berhasil dihapus');
-}
-
-
+        return redirect()->route('tugasharian')->with('success', 'Data berhasil dihapus.');
+    }
 }

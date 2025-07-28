@@ -1,10 +1,10 @@
 <section>
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profile /</span> Update Password</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profil /</span> Perbarui Kata Sandi</h4>
 
     <div class="card mb-4">
-        <h5 class="card-header">Update Password</h5>
+        <h5 class="card-header">Perbarui Kata Sandi</h5>
         <div class="card-body">
-            <p class="mb-3">Ensure your account is using a long, random password to stay secure.</p>
+            <p class="mb-3">Pastikan akun Anda menggunakan kata sandi yang panjang dan acak agar tetap aman.</p>
 
             <form method="post" action="{{ route('password.update') }}">
                 @csrf
@@ -12,7 +12,7 @@
 
                 {{-- Current Password --}}
                 <div class="mb-3">
-                    <label for="current_password" class="form-label">Current Password</label>
+                    <label for="current_password" class="form-label">Kata Sandi Saat Ini</label>
                     <input
                         type="password"
                         name="current_password"
@@ -27,7 +27,7 @@
 
                 {{-- New Password --}}
                 <div class="mb-3">
-                    <label for="password" class="form-label">New Password</label>
+                    <label for="password" class="form-label">Kata Sandi Baru</label>
                     <input
                         type="password"
                         name="password"
@@ -42,7 +42,7 @@
 
                 {{-- Confirm Password --}}
                 <div class="mb-3">
-                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
                     <input
                         type="password"
                         name="password_confirmation"
@@ -57,10 +57,10 @@
 
                 {{-- Save Button --}}
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
 
                     @if (session('status') === 'password-updated')
-                        <span class="text-success ms-3">Saved.</span>
+                        <span class="text-success ms-3">Berhasil disimpan.</span>
                     @endif
                 </div>
             </form>

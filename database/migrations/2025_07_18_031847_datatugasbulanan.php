@@ -13,7 +13,9 @@ return new class extends Migration
     {
         schema::create('datatugasbulanan', function (blueprint $table) {
             $table->id();
+
             $table->string('tugas_bulanan');
+
             $table->timestamps();
         });
     }

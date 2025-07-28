@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Dashboard User</title>
 
     <meta name="description" content="" />
 
@@ -141,15 +141,15 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
+            {{-- <li class="menu-item active">
               <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
-            </li>
+            </li> --}}
 
             <li class="menu-item active">
-              <a href="" class="menu-link">
+              <a href="{{  route('dashboarduser') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard User</div>
               </a>
@@ -192,12 +192,12 @@
 
 
 <!-- Banner Info -->
-<li class="menu-item">
+{{-- <li class="menu-item">
   <a href="{{ route('bannerinfo') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-info-circle"></i>
     <div data-i18n="Banner Info">Banner Info</div>
   </a>
-</li>
+</li> --}}
 
           
         </aside>
@@ -255,7 +255,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.edit') }}">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
@@ -263,8 +263,18 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                             <div class="profile-pic">
+                            <div class="count-indicator">
+                                <img class="img-xs rounded-circle"
+                                    src="{{ asset('template-admin/sneat-1.0.0') }}"
+                                    alt="">
+                                <span class="count bg-success"></span>
+                            </div>
+                            <div class="profile-name">
+                                <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
+                                <span>{{ Auth::user()->role }}</span>
+                            </div>
+                        </div>
                           </div>
                         </div>
                       </a>
@@ -273,15 +283,9 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.edit') }}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
                       </a>
                     </li>
                     <li>
@@ -306,7 +310,225 @@
         
           <div class="content-wrapper">
             @yield('konten')
+
+            <div class="row mt-3">
+    <div class="card">
+        <!-- Header Card -->
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Tugas Harian</h5>
+            <a href="{{ route('formtugasharian') }}" class="btn btn-primary btn-rounded">+ Tambah Data</a>
+        </div>
+
+        <!-- Tabel -->
+        <div class="table-responsive text-nowrap mt-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Tugas Harian</th>
+                        <th>Waktu Tugas</th>
+                        <th>Deskripsi</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($tugasharian as $items)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $items->datatugasharian->nama_tugas ?? '-' }}</td>
+                        <td>{{ $items->waktu_tugas }}</td>
+                        <td>{{ $items->deskripsi }}</td>
+                         <td class="position-relative">
+                        <div class="dropdown dropdown-menu-end" >
+                          <style>
+                            .table-responsive {
+                              overflow: initial; /* lebih aman daripada visible */
+                            }
+
+                            .dropdown-menu {
+                              z-index: 9999 !important;
+                            }
+
+                            td.position-relative {
+                              position: relative;
+                            }
+                          </style>
+
+                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                          </button>
+                          <ul class="dropdown-menu" style="z-index: 9999;">
+                            <li>
+                              <a class="dropdown-item" href="{{ route('edittugasharian', $items->id) }}">
+                                <i class="bx bx-edit-alt me-1"></i> Edit
+                              </a>
+                            </li>
+                            <li>
+                              <form action="{{ route('deletetugasharian', $items->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="dropdown-item text-danger">
+                                  <i class="bx bx-trash me-1"></i> Delete
+                                </button>
+                              </form>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-3">
+                {{ $tugasharian->links() }}
             </div>
+        </div>
+    </div>
+</div>
+
+            {{-- <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4 " style="margin-left: 25px; margin-top: 35px">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                      <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">Data Tugas</h5>
+                        <small class="text-muted">42.82k Total Sales</small>
+                      </div>
+                      <div class="dropdown">
+                        <button
+                          class="btn p-0"
+                          type="button"
+                          id="orederStatistics"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                          <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                          <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                          <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-column align-items-center gap-1">
+                          <h2 class="mb-2">8,258</h2>
+                          <span>Total Orders</span>
+                        </div>
+                        <div id="orderStatisticsChart"></div>
+                      </div>
+                      <ul class="p-0 m-0">
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-primary"
+                              ><i class=" bx bx-calendar-check"></i
+                            ></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">Tugas Harian</h6>
+                              
+                            </div>
+                            <div class="user-progress">
+                              
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-calendar-week"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">Tugas Mingguan</h6>
+                            
+                            </div>
+                            <div class="user-progress">
+                              
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-calendar-event"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">Tugas Bulanan</h6>
+                              
+                            </div>
+                            <div class="user-progress">
+                              
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div> --}}
+
+           
+            <!-- Tambahkan canvas grafik -->
+<canvas id="grafikTugas" width="400" height="200"></canvas>
+
+<!-- Kirim data Laravel ke JS -->
+<script>
+    const dataGrafik = {
+        labels: ['Tugas Harian', 'Tugas Mingguan', 'Tugas Bulanan'],
+        datasets: [{
+            label: 'Jumlah Tugas',
+            data: [{{ $jumlahHarian }}, {{ $jumlahMingguan }}, {{ $jumlahBulanan }}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(255, 206, 86, 0.6)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const configGrafik = {
+        type: 'bar',
+        data: dataGrafik,
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Grafik Jumlah Tugas Harian, Mingguan, Bulanan'
+                },
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    precision: 0
+                }
+            }
+        }
+    };
+
+    const ctx = document.getElementById('grafikTugas').getContext('2d');
+    new Chart(ctx, configGrafik);
+</script>
+
+<!-- Tambahkan Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
             
     <!-- Core JS -->
