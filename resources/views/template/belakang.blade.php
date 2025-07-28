@@ -104,8 +104,6 @@
 
               <span class="app-brand-text demo menu-text fw-bolder ms-2">mutaba'ah</span>
 
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Mutaba'ah</span>
-
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -118,14 +116,14 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="" class="menu-link">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
             </li>
 
             <li class="menu-item active">
-              <a href="" class="menu-link">
+              <a href="{{ route('dashboarduser') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard User</div>
               </a>
@@ -146,17 +144,6 @@
 </li>
 
 
-
-<!-- Tugas Mingguan -->
-<li class="menu-item">
-  <a href="{{ route('tugasmingguan')}}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-week"></i>
-    <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
-  </a>
-</li>
-
-
-
 <!--  Data Tugas Mingguan -->
 <li class="menu-item">
   <a href="{{ route('datatugasmingguan')}}" class="menu-link">
@@ -164,6 +151,11 @@
     <div data-i18n="Weekly Tasks">Nama Tugas Mingguan</div>
   </a>
 </li>
+
+
+
+
+
 <!-- Tugas Bulanan -->
 <li class="menu-item">
   <a href="{{ route('tugasbulanan') }}" class="menu-link">

@@ -48,8 +48,10 @@
           </tbody>
         </table>
 
-        {{-- Tampilkan link pagination --}}
-        {{ $datatugasmingguan->links() }}
+        <div class="d-flex justify-content-center small-pagination mt-3"style="margin-right: 150px">
+                    {{ $datatugasmingguan->links('pagination::bootstrap-5') }}
+
+                   </div>
 
       </div>
     </div>

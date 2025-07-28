@@ -8,28 +8,28 @@ use App\Models\DataTugasMingguan;
 
 class DataTugasMingguanController extends Controller
 {
-    public function index()
+     public function index()
     {
-        $datatugasmingguan = DataTugasMingguan::paginate(2);
-
+        $datatugasmingguan = DataTugasMingguan::paginate(5);
+       
         return view('back.datatugasmingguan.index', compact('datatugasmingguan'));
     }
 
-    public function create()
-    {
-        return view('back.datatugasmingguan.tambah');
-    }
+     public function create(){
 
+        
+        return view('back.datatugasmingguan.tambah');
+     }
+   
     public function store(Request $request)
     {
         $request->validate([
             'nama_tugas' => 'required|string|max:255',
         ]);
 
-        DataTugasMingguan::create([
+        datatugasmingguan::create([
             'nama_tugas' => $request->nama_tugas,
         ]);
-
 
         return redirect()->route('datatugasmingguan')->with('sukses', 'Nama tugas mingguan berhasil ditambahkan.');
     }
@@ -40,15 +40,15 @@ class DataTugasMingguanController extends Controller
         return view('back.datatugasmingguan.edit', compact('datatugasmingguan'));
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_tugas' => 'required|string|max:255',
+            'datatugasmingguan' => 'required|string|max:255',
         ]);
 
         $datatugasmingguan = DataTugasMingguan::findOrFail($id);
         $datatugasmingguan->update([
-            'nama_tugas' => $request->nama_tugas,
+            'datatugasmingguan' => $request->datatugasmingguan,
         ]);
 
         return redirect()->route('datatugasmingguan')->with('sukses', 'Nama tugas mingguan berhasil diupdate.');
@@ -56,9 +56,9 @@ class DataTugasMingguanController extends Controller
 
     public function destroy($id)
     {
-        $datatugasmingguan = DataTugasMingguan::findOrFail($id);
+        $datatugasmingguan = dataTugasMingguan::findOrFail($id);
         $datatugasmingguan->delete();
 
-        return redirect()->route('datatugasmingguan')->with('success', 'Nama tugas mingguan berhasil dihapus.');
+        return redirect()->route('datatugasmingguan')->with('success', 'Nama Tugas mingguan berhasil dihapus.');
     }
 }

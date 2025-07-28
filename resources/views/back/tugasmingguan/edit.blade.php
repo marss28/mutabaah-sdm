@@ -5,54 +5,57 @@
 <div class="row mt-2">
     <div class="col-8">
         <div class="card mb-4">
-            <h5 class="card-header">Edit Data</h5>
-            <div class="card-body">
-                <form id="form-edit" method="POST" action="{{ route('updatetugasmingguan', $data->id) }}">
-                    @csrf
-                    @method('PUT')
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Tambah Data</h5>
+            </div>
 
-                    <div class="mb-3">
-                        <label>Data Tugas Mingguan</label>
-                        <input type="text" name="data_tugas_mingguan" class="form-control" 
-                               value="{{ $data->data_tugas_mingguan }}" 
-                               data-original="{{ $data->data_tugas_mingguan }}">
+            {{-- FORM dimulai di sini --}}
+            <form method="POST" action="{{ route('updatetugasmingguan') }}">
+                @csrf
+                <div class="card-body">
+
+                    <div class="form-group mb-3">
+                        <label>Nama Tugas Mingguan</label>
+                        <select name="data_tugas_mingguan" id="nama_tugas" class="form-control">
+                            <option value="" selected disabled>-- Pilih Tugas --</option>
+                            @foreach ($datatugasmingguan as $item)
+                                <option value="{{ $item->id }}" {{ old('data_tugas_mingguan') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->nama_tugas }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('data_tugas_mingguan')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label>Waktu Tugas</label>
-                        <input type="time" name="waktu_tugas" class="form-control" 
-                               value="{{ $data->waktu_tugas }}" 
-                               data-original="{{ $data->waktu_tugas }}">
+                    <div class="form-group mb-3">
+                        <label class="form-label">Waktu Tugas</label>
+                        <input type="time" name="waktu_tugas" class="form-control" value="{{ old('waktu_tugas') }}">
+                        @error('waktu_tugas')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label>Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" 
-                               value="{{ $data->deskripsi }}" 
-                               data-original="{{ $data->deskripsi }}">
+                    <div class="form-group mb-3">
+                        <label class="form-label">Deskripsi</label>
+                        <input type="text" name="deskripsi" class="form-control" value="{{ old('deskripsi') }}">
+                        @error('deskripsi')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
-
-                <div class="form-group">
-                <label for="kategori_id">Nama Tugas Mingguan</label>
-                <select name="data_tugas_mingguan" class="form-control">
-                    @foreach ($datatugasmingguan as $item)
-                        <option value="{{ $item->id }}" {{ $data->data_tugas_mingguan == $item->id ? 'selected' : '' }}>
-                            {{ $item->nama_tugas }}
-                        </option>
-                    @endforeach
-                </select>
-                </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a href="{{ route('tugasmingguan') }}" class="btn btn-dark">Cancel</a>
 
                     <button type="submit" class="btn btn-primary">Kirim</button>
-                </form>
-            </div>
+                </div>
+            </form>
+            {{-- FORM ditutup di sini --}}
         </div>
     </div>
 </div>
 
-{{-- Script untuk deteksi perubahan tanpa SweetAlert --}}
+@endsection
+
+Script untuk deteksi perubahan tanpa SweetAlert
 <script>
     document.getElementById('form-edit').addEventListener('submit', function(e) {
         let isChanged = false;
@@ -69,5 +72,3 @@
         }
     });
 </script>
-
-@endsection
