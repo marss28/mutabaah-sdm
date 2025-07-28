@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\tugasbulanan;
+use Illuminate\Http\Request;
+use App\Models\datatugasbulanan;
 
 class tugasbulananController extends Controller
 {
@@ -14,14 +15,16 @@ class tugasbulananController extends Controller
 
 
     public function formtugasbulanan(){
-        return view('back.tugas_bulanan.create');
+
+        $datatugasbulanan = datatugasbulanan::all();
+        return view('back.tugas_bulanan.create', compact('datatugasbulanan'));
      }
 
 
      public function storetugasbulanan(Request $request)
 {
     $request->validate([
-        'data_tugas_bulanan' => 'required|string|min:3|max:255',
+        'datatugasbulanan_id' => 'required|exists:datatugasbulanans,id',
         'waktu_tugas' => 'required|date_format:H:i',
         'deskripsi' => 'required|string|min:3|max:255',
     ]);
@@ -37,21 +40,23 @@ class tugasbulananController extends Controller
      public function edittugasbulanan($id)
     {
         $tugasbulanan = tugasbulanan::findOrFail($id);
-        return view('back.tugas_bulanan.edit', compact('tugasbulanan'));
+        $datatugasbulanan = datatugasbulanan::all();
+        return view('back.tugas_bulanan.edit', compact('tugasbulanan', 'datatugasbulanan'));
     }
 
     public function updatetugasbulanan(Request $request, $id)
 {
     $tugasbulanan = tugasbulanan::findOrFail($id);
     
+    
     $request->validate([
-        'data_tugas_bulanan' => 'required|string|min:3|max:255',
+        'datatugasbulanan_id' => 'required|exists:datatugasbulanans,id',
         'waktu_tugas' => 'required|date_format:H:i',
         'deskripsi' => 'required|string|min:3|max:255',
     ]);
 
     $tugasbulanan->update([
-        'data_tugas_bulanan' => $request->data_tugas_bulanan,
+        'datatugasbulanan' => $request->datatugasbulanan,
         'waktu_tugas' => $request->waktu_tugas,
         'deskripsi' => $request->deskripsi,
     ]);

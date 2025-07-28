@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\tugasbulanan;
 use Illuminate\Http\Request;
-use App\Models\DataTugasBulanan;
-use App\Http\Controllers\DataTugasBulananController;
+use App\Models\datatugasbulanan;
+
 
 
 class DataTugasBulananController extends Controller
@@ -13,7 +13,7 @@ class DataTugasBulananController extends Controller
     public function index()
 {
 
-    $datatugasbulanan = DataTugasBulanan::paginate(5);
+    $datatugasbulanan = datatugasbulanan::paginate(5);
     
     return view('back.data_tugas_bulanan.tugas_data_bulanan', compact('datatugasbulanan'));
 
@@ -21,7 +21,8 @@ class DataTugasBulananController extends Controller
 
     public function formdatatugasbulanan()
     {
-        return view('back.data_tugas_bulanan.create');
+
+        return view('back.data_tugas_bulanan.create', compact('datatugasbulanan'));
     }
 
     public function storedatatugasbulanan(Request $request)
@@ -30,7 +31,7 @@ class DataTugasBulananController extends Controller
             'tugas_bulanan' => 'required|string|max:255'
         ]);
 
-        DataTugasBulanan::create([
+        datatugasbulanan::create([
             'tugas_bulanan' => $request->tugas_bulanan
         ]);
 
@@ -40,7 +41,7 @@ class DataTugasBulananController extends Controller
 
     public function editdatatugasbulanan($id)
     {
-        $datatugasbulanan = DataTugasBulanan::findOrFail($id);
+        $datatugasbulanan = datatugasbulanan::findOrFail($id);
         return view('back.data_tugas_bulanan.edit', compact('datatugasbulanan'));
     }
 
@@ -52,7 +53,7 @@ class DataTugasBulananController extends Controller
             'tugas_bulanan' => 'required|string|max:255',
         ]);
 
-        $datatugasbulanan = DataTugasBulanan::findOrFail($id);
+        $datatugasbulanan = datatugasbulanan::findOrFail($id);
         $datatugasbulanan->update([
            'tugas_bulanan' => $request->tugas_bulanan,
         ]);
@@ -63,7 +64,7 @@ class DataTugasBulananController extends Controller
 
     public function deletedatatugasbulanan($id)
     {
-        $datatugasbulanan = DataTugasBulanan::findOrFail($id);
+        $datatugasbulanan = datatugasbulanan::findOrFail($id);
         $datatugasbulanan->delete();
 
         return redirect()->route('datatugasbulanan')->with('success', 'data berhasil dihapus');
