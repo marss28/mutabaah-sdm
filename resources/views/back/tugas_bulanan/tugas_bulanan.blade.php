@@ -2,7 +2,7 @@
 
 @section('konten')
 
-<div class="row mt-3">
+<div class="container mt-3">
     <div class="card">
         <div class="d-flex justify-content-between align-items-center me-4">
             <h5 class="card-header">Tugas Bulanan</h5>
@@ -52,10 +52,11 @@
             </table>
         </div>
 
-        <div class="mt-3 ms-2">
-            {{ $tugasbulanan->links() }}
-        </div>
-    </div>
-</div>
-
+                  <div class="d-flex justify-content-center">
+                        {{ $tugasbulanan->links() }}
+                      </div>
+                </div>
+                </div>
+              </div>
+              </div>
 @endsection

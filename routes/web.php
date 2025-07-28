@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\TugasmingguanController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DatatugasharianController;
+use App\Http\Controllers\DataTugasMingguanController;
 
 
 Route::get('/', function () {
@@ -58,6 +59,10 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
 });
 
 
+Route::get('/dashboarduser', function () {
+    return view('back.dashboard.dashboarduser');
+})->middleware(['auth', 'verified'])->name('dashboarduser');
+
 
 
 Route::middleware(['auth', 'userMiddleware'])->group(function () {
@@ -72,12 +77,23 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::put('/updatetugasbulanan/{id}', [tugasbulananController::class, 'updatetugasbulanan'])->name('updatetugasbulanan');
     Route::delete('/deletetugasbulanan/{id}', [tugasbulananController::class, 'deletetugasbulanan'])->name('deletetugasbulanan');
 
+    // TUGAS MINGGUAN
     Route::get('/tugasmingguan',[TugasmingguanController::class, 'index'])->name('tugasmingguan');
     Route::get('/formtugasmingguan',[TugasmingguanController::class, 'formtugasmingguan'])->name('formtugasmingguan');
     Route::post('/storetugasmingguan',[TugasmingguanController::class, 'storetugasmingguan'])->name('storetugasmingguan');
     Route::get('/edittugasmingguan/{id}', [TugasmingguanController::class, 'edittugasmingguan'])->name('edittugasmingguan');
     Route::put('/updatetugasmingguan/{id}', [TugasmingguanController::class,  'updatetugasmingguan'])->name('updatetugasmingguan');
     Route::delete('/deletetugasmingguan/{id}', [TugasmingguanController::class, 'deletetugasmingguan'])->name('deletetugasmingguan');
+
+
+    // DATA TUGAS MINGGUAN
+    Route::get('/datatugasmingguan', [DataTugasMingguanController::class, 'index'])->name('datatugasmingguan');
+    Route::get('/formdatatugasmingguan', [DataTugasMingguanController::class, 'create'])->name('formdatatugasmingguan');
+    Route::post('/storedatatugasmingguan',[DataTugasMingguanController::class, 'store'])->name('storedatatugasmingguan');
+    Route::get('/datatugasmingguan/{id}/edit', [DataTugasMingguanController::class, 'edit'])->name('editdatatugasmingguan');
+    Route::put('/updatedatatugasmingguan/{id}', [DataTugasMingguanController::class,  'update'])->name('updatedatatugasmingguan');
+    Route::delete('/datatugasmingguan/{id}', [DataTugasMingguanController::class, 'destroy'])->name('deletedatatugasmingguan');
+
 
     Route::get('/tugasharian',[TugasharianController::class, 'index'])->name('tugasharian');
     Route::get('/formtugasharian',[TugasharianController::class, 'formtugasharian'])->name('formtugasharian');
@@ -86,7 +102,7 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::put('/updatetugasharian/{id}', [TugasharianController::class,  'updatetugasharian'])->name('updatetugasharian');
     Route::delete('/deletetugasharian/{id}', [TugasharianController::class, 'deletetugasharian'])->name('deletetugasharian');
 
-    
+
 
 
 
