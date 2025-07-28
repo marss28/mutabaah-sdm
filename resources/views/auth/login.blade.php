@@ -157,6 +157,9 @@
                   <div class="form-group">
                     <label>Password *</label>
                     <input type="password" name="password" class="form-control p_input">
+                     @error('password')
+                        <div class="text-danger mb-1">{{ $message }}</div>
+                      @enderror
                   </div>
                   <div class="mb-3">
                 </div>

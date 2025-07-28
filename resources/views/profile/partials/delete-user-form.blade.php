@@ -1,17 +1,17 @@
 <section>
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profile /</span> Delete Account</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profil /</span> Hapus Akun</h4>
 
     <div class="card mb-4">
-        <h5 class="card-header text-danger">Delete Account</h5>
+        <h5 class="card-header text-danger">Hapus Akun</h5>
         <div class="card-body">
             <p class="mb-3">
-                Once your account is deleted, all of its resources and data will be permanently deleted. 
-                Before deleting your account, please download any data or information that you wish to retain.
+                Setelah akun Anda dihapus, semua sumber daya dan datanya akan dihapus secara permanen.
+                Sebelum menghapus akun Anda, harap unduh data atau informasi apa pun yang ingin Anda simpan.
             </p>
 
             <!-- Trigger Button -->
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-                Delete Account
+                Hapus Akun
             </button>
         </div>
     </div>
@@ -24,18 +24,18 @@
                 @method('delete')
 
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="deleteAccountModalLabel">Confirm Account Deletion</h5>
+                    <h5 class="modal-title text-danger" id="deleteAccountModalLabel">Konfirmasi Penghapusan Akun</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
                     <p>
-                        Once your account is deleted, all of its resources and data will be permanently deleted.
-                        Please enter your password to confirm.
+                       Setelah akun Anda dihapus, semua sumber daya dan datanya akan dihapus secara permanen.
+                        Masukkan kata sandi Anda untuk mengonfirmasi.
                     </p>
 
                     <div class="mb-3">
-                        <label for="delete_password" class="form-label">Password</label>
+                        <label for="delete_password" class="form-label">Kata Sandi</label>
                         <input
                             type="password"
                             id="delete_password"
@@ -52,10 +52,10 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Cancel
+                        Batal
                     </button>
                     <button type="submit" class="btn btn-danger">
-                        Delete Account
+                        Hapus Akun
                     </button>
                 </div>
             </form>

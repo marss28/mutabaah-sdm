@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Dashboard Admin</title>
 
     <meta name="description" content="" />
 
@@ -148,12 +148,12 @@
               </a>
             </li>
 
-            <li class="menu-item active">
-              <a href="" class="menu-link">
+            {{-- <li class="menu-item active">
+              <a href="{{ route('dashboarduser') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard User</div>
               </a>
-            </li>
+            </li> --}}
 
 
             <!-- Layouts -->
@@ -255,17 +255,17 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.update') }}">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
                               <img src="{{ asset('template-admin/sneat-1.0.0') }}/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
-                          </div>
+                          <div class="profile-name">
+                                <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
+                                <span>{{ Auth::user()->role }}</span>
+                            </div>
                         </div>
                       </a>
                     </li>
@@ -283,12 +283,12 @@
                     </li>
                     <li>
                      <form method="POST" action="{{ route('logout') }}">
-  @csrf
-  <button type="submit" class="dropdown-item preview-item">
-    <i class="bx bx-power-off me-2"></i>
-    <span class="align-middle">Log Out</span>
-  </button>
-</form>
+                        @csrf
+                        <button type="submit" class="dropdown-item preview-item">
+                          <i class="bx bx-power-off me-2"></i>
+                          <span class="align-middle">Log Out</span>
+                        </button>
+                      </form>
                       </a>
                     </li>
                   </ul>

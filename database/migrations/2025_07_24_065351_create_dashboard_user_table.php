@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tugas_harian', function (Blueprint $table) {
+        Schema::create('dashboard_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('datatugasharian_id');
-            $table->time('waktu_tugas');
-            $table->string('deskripsi');
             $table->timestamps();
-
-            $table->foreign('datatugasharian_id')->references('id')->on('datatugasharian')->onDelete('cascade');
         });
     }
 
@@ -27,7 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-    Schema::dropIfExists('tugas_harian');
+        Schema::dropIfExists('dashboard_user');
     }
-
 };

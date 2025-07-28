@@ -1,5 +1,5 @@
 <section>
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profile /</span> Update</h4>
+    {{-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profile /</span> Update</h4> --}}
 
     {{-- Form kirim verifikasi email --}}
     <form id="send-verification" method="post" action="{{ route('verification.send') }}" class="d-none">
@@ -7,37 +7,49 @@
     </form>
 
     <div class="card mb-4">
-        <h5 class="card-header">Profile Information</h5>
+        <h5 class="card-header">Profil</h5>
         <div class="card-body">
             <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
 
                 {{-- Upload Foto --}}
-                <div class="mb-3">
-                    <label for="photo" class="form-label">Profile Photo</label>
-                    <input
-                        type="file"
-                        name="photo"
-                        id="photo"
-                        class="form-control @error('photo') is-invalid @enderror"
-                        accept="image/*"
-                    >
-                    @error('photo')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="card-body">
+                      <div class="d-flex align-items-start align-items-sm-center gap-4">
+                       <img
+                            src="{{ $user->profile_photo ? asset('storage/' . $user->profile_photo) : asset('template-admin/sneat-1.0.0/img/avatars/1.png') }}"
+                            alt="user-avatar"
+                            class="d-block rounded"
+                            height="100"
+                            width="100"
+                            id="uploadedAvatar"
+                            />
 
-                    {{-- Tampilkan foto saat ini --}}
-                    @if ($user->profile_photo_path)
-                        <div class="mt-2">
-                            <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Profile Photo" width="100" class="rounded">
+                        <div class="button-wrapper">
+                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                            <span class="d-none d-sm-block">Tambah Foto</span>
+                            <i class="bx bx-upload d-block d-sm-none"></i>
+                            <input
+                              type="file"
+                              id="upload"
+                              class="account-file-input"
+                              hidden
+                              accept="image/png, image/jpeg"
+                            />
+                          </label>
+                          <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                            <i class="bx bx-reset d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Hapus</span>
+                          </button>
                         </div>
-                    @endif
-                </div>
+                      </div>
+                    </div>
+
+                   
 
                 {{-- Name --}}
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="name" class="form-label">Nama</label>
                     <input
                         type="text"
                         id="name"
@@ -90,10 +102,10 @@
 
                 {{-- Submit --}}
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
 
                     @if (session('status') === 'profile-updated')
-                        <span class="text-success ms-3">Saved.</span>
+                        <span class="text-success ms-3">Berhasil disimpan.</span>
                     @endif
                 </div>
             </form>

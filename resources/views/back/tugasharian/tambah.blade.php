@@ -25,13 +25,18 @@
                         </div>
                     @endif
 
-                    <div class="mb-3">
-                        <label class="form-label">Data Tugas harian</label>
-                        <input type="text" name="data_tugas_harian" class="form-control" placeholder="Data Tugas harian..." value="{{ old('data_tugas_harian') }}">
-                        @error('data_tugas_harian')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+                    <div class="form-group">
+                            <label>Nama Tugas Harian</label>
+                            <select name="datatugasharian_id" id="nama_tugas" class="form-control">
+                              <option value="">-- Pilih Nama Tugas -- </option>
+                              @foreach ($datatugasharian as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_tugas }}</option>
+                              @endforeach
+                            </select>
+                            @error('nama_tugas_id')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
 
                     <div class="mb-3">
                         <label class="form-label">Waktu Tugas</label>
@@ -48,6 +53,8 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+
+                    
 
                     <button type="submit" class="btn btn-primary">Kirim</button>
                 </div>
