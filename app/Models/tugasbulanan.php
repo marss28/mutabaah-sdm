@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\tugasbulanan;
+
 use App\Models\DataTugasBulanan;
 use Illuminate\Database\Eloquent\Model;
 

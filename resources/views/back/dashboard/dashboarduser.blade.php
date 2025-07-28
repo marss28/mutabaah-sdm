@@ -1,3 +1,7 @@
+@extends('template.belakang')
+
+@section('konten')
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -228,13 +232,13 @@
                     placeholder="Search..."
                     aria-label="Search..."
                   />
-                </div>
+                </div> 
               </div>
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
+                 <li class="nav-item lh-1 me-3">
                   <a
                     class="github-button"
                     href="https://github.com/themeselection/sneat-html-admin-template-free"
@@ -298,7 +302,7 @@
     <i class="bx bx-power-off me-2"></i>
     <span class="align-middle">Log Out</span>
   </button>
-</form>
+</form> 
                       </a>
                     </li>
                   </ul>
@@ -311,7 +315,7 @@
           <div class="content-wrapper">
             @yield('konten')
 
-            <div class="row mt-3">
+            {{-- <div class="row mt-3">
     <div class="card">
         <!-- Header Card -->
         <div class="card-header d-flex justify-content-between align-items-center">
@@ -388,7 +392,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
             {{-- <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4 " style="margin-left: 25px; margin-top: 35px">
                   <div class="card h-100">
@@ -476,7 +480,7 @@
 
            
             <!-- Tambahkan canvas grafik -->
-<canvas id="grafikTugas" width="400" height="200"></canvas>
+{{-- <canvas id="grafikTugas" width="400" height="200"></canvas>
 
 <!-- Kirim data Laravel ke JS -->
 <script>
@@ -524,7 +528,7 @@
 
     const ctx = document.getElementById('grafikTugas').getContext('2d');
     new Chart(ctx, configGrafik);
-</script>
+</script> --}}
 
 <!-- Tambahkan Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
