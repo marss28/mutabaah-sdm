@@ -6,23 +6,23 @@
         <div class="card mb-4">
         <h5 class="card-header">Edit Data</h5>
         <div class="card-body">
-            <form method="POST" action="{{ route('updatetugasbulanan', $data->id) }}">
+            <form method="POST" action="{{ route('updatetugasbulanan', $tugasbulanan->id) }}">
                 @csrf
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label>Data Tugas bulanan</label>
-                    <input type="text" name="data_tugas_bulanan" class="form-control" value="{{ $data->data_tugas_bulanan }}">
+                    <label>Tugas bulanan</label>
+                    <input type="text" name="data_tugas_bulanan" class="form-control" value="{{ $tugasbulanan->data_tugas_bulanan }}">
                 </div>
 
                 <div class="mb-3">
                     <label>Waktu Tugas</label>
-                    <input type="time" name="waktu_tugas" class="form-control" value="{{ $data->waktu_tugas }}">
+                    <input type="time" name="waktu_tugas" class="form-control" value="{{ $tugasbulanan->waktu_tugas }}">
                 </div>
 
                 <div class="mb-3">
                     <label>Deskripsi</label>
-                    <input type="text" name="deskripsi" class="form-control" value="{{ $data->deskripsi }}">
+                    <input type="text" name="deskripsi" class="form-control" value="{{ $tugasbulanan->deskripsi }}">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Kirim</button>

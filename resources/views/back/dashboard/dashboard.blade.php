@@ -1,3 +1,7 @@
+@extends('template.belakang')
+
+@section('konten')
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -117,7 +121,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="{{ route('dashboard') }}" class="menu-link">
+              <a href="{{ route('dashboardadmin') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard Admin</div>
               </a>
@@ -165,6 +169,14 @@
   <a href="{{ route('tugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
     <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
+  </a>
+</li>
+
+<!-- Data Tugas Bulanan -->
+<li class="menu-item">
+  <a href="{{ route('datatugasbulanan') }}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+    <div data-i18n="Monthly Tasks">Data Tugas Bulanan</div>
   </a>
 </li>
 
@@ -225,7 +237,7 @@
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="{{ route() }}" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                       <img src="{{ asset('template-admin/sneat-1.0.0') }}/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>

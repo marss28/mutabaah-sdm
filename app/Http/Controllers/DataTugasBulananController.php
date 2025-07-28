@@ -2,62 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tugasbulanan;
 use Illuminate\Http\Request;
+use App\Models\DataTugasBulanan;
 use App\Http\Controllers\DataTugasBulananController;
+
 
 class DataTugasBulananController extends Controller
 {
     public function index()
 {
 
-    $tugasbulanan = TugasBulanan::with('dataTugasBulanan')->latest()->get();
-    return view('back.dashboard.tugas_bulanan.tugas_bulanan', compact('tugas'));
+    $datatugasbulanan = DataTugasBulanan::paginate(5);
+    
+    return view('back.data_tugas_bulanan.tugas_data_bulanan', compact('datatugasbulanan'));
 
 }
 
-    public function create()
+    public function formdatatugasbulanan()
     {
-        return view('back.datatugasbulanan.create');
+        return view('back.data_tugas_bulanan.create');
     }
 
-    public function store(Request $request)
+    public function storedatatugasbulanan(Request $request)
     {
         $request->validate([
-            'datatugasbulanan' => 'required|string|max:255'
+            'tugas_bulanan' => 'required|string|max:255'
         ]);
 
-        kategori::create([
-            $datatugasbulanan => $request->datatugasbulanan
+        DataTugasBulanan::create([
+            'tugas_bulanan' => $request->tugas_bulanan
         ]);
 
         return redirect()->route('datatugasbulanan')->with('success', 'data tugas bulanan berhasil ditambahkan');
         
     }
 
-    public function edit($id)
+    public function editdatatugasbulanan($id)
     {
-        $datatugasbulanan = datatugasbulanan::findOrFail($id);
-        return view('back.datatugasbulanan.edit', compact('datatugasbulanan'));
+        $datatugasbulanan = DataTugasBulanan::findOrFail($id);
+        return view('back.data_tugas_bulanan.edit', compact('datatugasbulanan'));
     }
 
-    public function update(Request $request, $id)
+
+
+    public function updatedatatugasbulanan(Request $request, $id)
     {
         $request->validate([
-            'datatugasbulanan' => 'required|string|max:255',
+            'tugas_bulanan' => 'required|string|max:255',
         ]);
 
-        $datatugasbulanan = datatugasbulanan::findOrFail($id);
+        $datatugasbulanan = DataTugasBulanan::findOrFail($id);
         $datatugasbulanan->update([
-           ' datatugasbulanan' => $request->datatugasbulanan,
+           'tugas_bulanan' => $request->tugas_bulanan,
         ]);
 
         return redirect()->route('datatugasbulanan')->with('success', 'data tugas bulanan berhasil diupdate');
     }
 
 
-    public function destroy($id)
+    public function deletedatatugasbulanan($id)
     {
-        $datattugasbulanan = datatugasbulanan::findOrFail($id);
+        $datatugasbulanan = DataTugasBulanan::findOrFail($id);
         $datatugasbulanan->delete();
 
         return redirect()->route('datatugasbulanan')->with('success', 'data berhasil dihapus');

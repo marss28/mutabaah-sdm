@@ -8,16 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class DataTugasBulanan extends Model
 {
     protected $table = 'datatugasbulanans';
-    protected $filable = ('nama_tugas');
 
     // public function tugasbulanan(){
     //     return $this->hasMany(tugasbulanan::class);
 
-    protected $fillable = ['datatugasbulanan'];
+    protected $fillable = ['tugas_bulanan'];
 
         public function tugasbulanan()
         {
-            return $thid->belongsTo(tugasbulanan::class, 'tugasbulanan_id');
+            return $this->belongsTo(tugasbulanan::class, 'tugasbulanan_id');
         }
     }
 // }

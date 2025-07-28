@@ -122,12 +122,17 @@
               </a>
             </li>
 
-            <li class="menu-item active">
-              <a href="{{ route('dashboarduser') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard User</div>
-              </a>
-            </li>
+            @auth
+            @if(Auth::user()->role !== 'admin')
+              <li class="menu-item active">
+                <a href="{{ route('dashboarduser') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Dashboard User</div>
+                </a>
+              </li>
+            @endif
+          @endauth
+
 
             <!-- Layouts -->
            
@@ -163,11 +168,11 @@
 
 
 
-<!-- Tugas Bulanan -->
+<!-- Data Tugas Bulanan -->
 <li class="menu-item">
-  <a href="{{ route('tugasbulanan') }}" class="menu-link">
+  <a href="{{ route('datatugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-    <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
+    <div data-i18n="Monthly Tasks">Nama Tugas Bulanan</div>
   </a>
 </li>
 
@@ -232,7 +237,7 @@
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="{{ route('profile.edit') }}" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                       <img src="{{ asset('template-admin/sneat-1.0.0') }}/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>

@@ -13,6 +13,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Data Tugas Bulanan</th>
                         <th>Waktu Tugas</th>
                         <th>Deskripsi</th>
@@ -20,38 +21,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($tugasbulanan as $data)
-                        <tr>
-                            <td>{{ $data->data_tugas_bulanans }}</td>
-                            <td>
-                                @if($data->waktu_tugas)
-                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $data->waktu_tugas)->format('H:i') }}
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td>{{ $data->deskripsi }}</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="#"><i class="bx bx-trash me-1"></i> Delete</a>
+                    @php $no = 1; @endphp
+                    @foreach ($tugasbulanan as $items)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $items->data_tugas_bulanan }}</td>
+                        <td>{{ $items->waktu_tugas }}</td>
+                        <td>{{ $items->deskripsi }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('edittugasbulanan', $items->id) }}">
+                                        <i class="bx bx-edit-alt me-1"></i> Edit
+                                    </a>
+                                    <form action="{{ route('deletetugasbulanan', $items->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            <i class="bx bx-trash me-1"></i> Delete
+                                        </button>
+                                    </form>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="text-center">Tidak ada data.</td>
-                        </tr>
-                    @endforelse
+                        
+                    @endforeach
                 </tbody>
             </table>
         </div>
-
                   <div class="d-flex justify-content-center">
                         {{ $tugasbulanan->links() }}
                       </div>
