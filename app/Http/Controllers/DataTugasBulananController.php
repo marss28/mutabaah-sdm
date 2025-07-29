@@ -22,7 +22,7 @@ class DataTugasBulananController extends Controller
     public function formdatatugasbulanan()
     {
 
-        return view('back.data_tugas_bulanan.create', compact('datatugasbulanan'));
+        return view('back.data_tugas_bulanan.create');
     }
 
     public function storedatatugasbulanan(Request $request)
