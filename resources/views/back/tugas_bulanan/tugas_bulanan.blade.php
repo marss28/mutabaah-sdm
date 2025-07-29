@@ -25,7 +25,7 @@
                     @foreach ($tugasbulanan as $items)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $items->data_tugas_bulanan }}</td>
+                        <td>{{ $items->tugasbulanan->datatugasbulanan ?? '-' }}</td>
                         <td>{{ $items->waktu_tugas }}</td>
                         <td>{{ $items->deskripsi }}</td>
                         <td>

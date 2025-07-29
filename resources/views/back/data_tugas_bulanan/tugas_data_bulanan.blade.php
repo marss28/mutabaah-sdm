@@ -53,7 +53,8 @@
                           </button>
                           <ul class="dropdown-menu" style="z-index: 9999;">
                             <li>
-                              <a class="dropdown-item" href="{{ route('editdatatugasbulanan', $item->id) }}" class="btn btn-warning">Edit</a>
+                              <a class="dropdown-item" href="{{ route('editdatatugasbulanan', $item->id) }}">
+                                <i class="bx bx-edit-alt me-1"></i> Edit
                               </a>
                             </li>
                             <li>
@@ -69,14 +70,13 @@
                         </div>
                       </td>
 
-
                     </tr>
                     @endforeach
                      </tbody>
                     </table>
 
 
-                    <div class="d-flex justify-content-center small-pagination mt-5">
+                    <div class="d-flex justify-content-center small-pagination mt-3" style="margin-right: 200px">
                     {{ $datatugasbulanan->links('pagination::bootstrap-5') }}
 
                    </div>

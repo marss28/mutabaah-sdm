@@ -71,7 +71,7 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
 
     
 
-    Route::get('/tugas/search', [TugasController::class, 'search'])->name('tugas.search');
+    Route::get('/tugas/search', [SearchController::class, 'search'])->name('tugas.search');
 
 
 
@@ -85,7 +85,7 @@ Route::get('/user', function(){
 
 
 Route::middleware(['auth', 'userMiddleware'])->group(function () {
-    Route::get('/userdashboard', [DashboardController::class, 'Userindex']);
+    Route::get('/userdashboard', [DashboardUserController::class, 'Userindex']);
     
     
      // TUGAS BULANAN
