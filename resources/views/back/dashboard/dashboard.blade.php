@@ -1,5 +1,6 @@
 @extends('template.belakang')
 
+
 @section('konten')
 
 <div class="row">
