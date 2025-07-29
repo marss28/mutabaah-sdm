@@ -49,12 +49,15 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::delete('/deletedatatugasharian/{id}', [DatatugasharianController::class, 'destroy'])->name('deletedatatugasharian');
 
 
+
+
      Route::get('/datatugasmingguan', [DataTugasMingguanController::class, 'index'])->name('datatugasmingguan');
     Route::get('/formdatatugasmingguan', [DataTugasMingguanController::class, 'create'])->name('formdatatugasmingguan');
     Route::post('/storedatatugasmingguan',[DataTugasMingguanController::class, 'store'])->name('storedatatugasmingguan');
     Route::get('/datatugasmingguan/{id}/edit', [DataTugasMingguanController::class, 'edit'])->name('editdatatugasmingguan');
     Route::put('/updatedatatugasmingguan/{id}', [DataTugasMingguanController::class,  'update'])->name('updatedatatugasmingguan');
     Route::delete('/datatugasmingguan/{id}', [DataTugasMingguanController::class, 'destroy'])->name('deletedatatugasmingguan');
+
 
     // DATA TUGAS BULANAN
     Route::get('/datatugasbulanan', [DataTugasBulananController::class, 'index'])->name('datatugasbulanan');
@@ -115,11 +118,10 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
 
     
    
-   
     
 
     
-
+    
 
     
 
@@ -159,10 +161,6 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::delete('/deletetugasmingguan/{id}', [TugasmingguanController::class, 'deletetugasmingguan'])->name('deletetugasmingguan');
 
 
-    // DATA TUGAS MINGGUAN
-   
-
-
     Route::get('/tugasharian',[TugasharianController::class, 'index'])->name('tugasharian');
     Route::get('/formtugasharian',[TugasharianController::class, 'formtugasharian'])->name('formtugasharian');
     Route::post('/storetugasharian',[TugasharianController::class, 'storetugasharian'])->name('storetugasharian');
@@ -171,7 +169,7 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::delete('/deletetugasharian/{id}', [TugasharianController::class, 'deletetugasharian'])->name('deletetugasharian');
 
 
-
+    
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use App\Models\DataTugasBulanan;
 use Illuminate\Database\Eloquent\Model;
 
