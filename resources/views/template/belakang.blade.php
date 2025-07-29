@@ -115,12 +115,16 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="{{ route('dashboard') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard Admin</div>
-              </a>
-            </li>
+            @auth
+            @if(Auth::user()->role !== 'user')
+              <li class="menu-item active">
+                <a href="{{ route('dashboardadmin') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Dashboard Admin</div>
+                </a>
+              </li>
+            @endif
+          @endauth
 
             @auth
             @if(Auth::user()->role !== 'admin')
@@ -140,29 +144,71 @@
   <span class="menu-header-text">Pages</span>
 </li>
 
-<!-- Tugas Harian -->
-<li class="menu-item">
-  <a href="{{ route('datatugasharian') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
-  </a>
-</li>
+@auth
+  @if(auth()->user()->role === 'admin')
+    <!-- Data Tugas Harian -->
+    <li class="menu-item">
+      <a href="{{ route('datatugasharian') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+        <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
+      </a>
+    </li>
 
-{{-- <li class="menu-item">
-  <a href="{{ route('tugasharian') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-    <div data-i18n="Daily Tasks">Tugas Harian</div>
-  </a>
-</li> --}}
+    <!--  Data Tugas Mingguan -->
+    <li class="menu-item">
+      <a href="{{ route('datatugasmingguan')}}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-calendar-week"></i>
+        <div data-i18n="Weekly Tasks">Nama Tugas Mingguan</div>
+      </a>
+    </li>
+
+    <!-- Data Tugas Bulanan -->
+    <li class="menu-item">
+      <a href="{{ route('datatugasbulanan') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+        <div data-i18n="Monthly Tasks">Nama Tugas Bulanan</div>
+      </a>
+    </li>
+
+    <!-- Banner Info -->
+    <li class="menu-item">
+      <a href="{{ route('bannerinfo') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-info-circle"></i>
+        <div data-i18n="Banner Info">Banner Info</div>
+      </a>
+    </li>
+  @endif
+@endauth
 
 
-<!--  Data Tugas Mingguan -->
-<li class="menu-item">
-  <a href="{{ route('datatugasmingguan')}}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-week"></i>
-    <div data-i18n="Weekly Tasks">Nama Tugas Mingguan</div>
-  </a>
-</li>
+
+@auth
+  @if(auth()->user()->role === 'user')
+    {{-- Tugas Harian --}}
+    <li class="menu-item">
+      <a href="{{ route('tugasharian') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+        <div data-i18n="Daily Tasks">Tugas Harian</div>
+      </a>
+    </li>
+
+    {{-- Tugas Mingguan --}}
+    <li class="menu-item">
+      <a href="{{ route('tugasmingguan') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+        <div data-i18n="Daily Tasks">Tugas Mingguan</div>
+      </a>
+    </li>
+
+    {{-- Tugas Bulanan --}}
+    <li class="menu-item">
+      <a href="{{ route('tugasbulanan') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+        <div data-i18n="Daily Tasks">Tugas Bulanan</div>
+      </a>
+    </li>
+  @endif
+@endauth
 
 {{-- <!-- Nama Tugas Bulanan -->
 <li class="menu-item">
@@ -171,28 +217,7 @@
     <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
   </a>
 </li> --}}
-
-
-<!-- Nama Tugas Bulanan -->
-<li class="menu-item">
-  <a href="{{ route('datatugasbulanan') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-    <div data-i18n="Monthly Tasks">Nama Tugas Bulanan</div>
-  </a>
-</li>
-
-
-
-<!-- Banner Info -->
-<li class="menu-item">
-  <a href="{{ route('bannerinfo') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-info-circle"></i>
-    <div data-i18n="Banner Info">Banner Info</div>
-  </a>
-</li>
-
-
-          
+ 
         </aside>
         <!-- / Menu -->
 
@@ -242,7 +267,7 @@
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="{{ route('profile.edit') }}" data-bs-toggle="dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                       <img src="{{ asset('template-admin/sneat-1.0.0') }}/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>

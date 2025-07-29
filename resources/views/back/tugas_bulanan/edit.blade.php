@@ -10,10 +10,18 @@
                 @csrf
                 @method('PUT')
 
-                <div class="mb-3">
-                    <label>Tugas bulanan</label>
-                    <input type="text" name="data_tugas_bulanan" class="form-control" value="{{ $tugasbulanan->data_tugas_bulanan }}">
-                </div>
+                <div class="form-group">
+                            <label>Nama Tugas Bulanan</label>
+                            <select name="datatugasbulanan_id" id="nama_tugas" class="form-control">
+                              <option value="">-- Pilih Nama Tugas -- </option>
+                              @foreach ($tugasbulanan as $item)
+                                <option value="{{ $item->id }}">{{ $item->tugas_bulanan }}</option>
+                              @endforeach
+                            </select>
+                            @error('tugas_bulanan_id')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
 
                 <div class="mb-3">
                     <label>Waktu Tugas</label>

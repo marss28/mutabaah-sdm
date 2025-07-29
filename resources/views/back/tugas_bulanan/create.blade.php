@@ -25,13 +25,18 @@
                         </div>
                     @endif
 
-                    <div class="mb-3">
-                        <label class="form-label">Data Tugas Bulanan</label>
-                        <input type="text" name="data_tugas_bulanan" class="form-control" placeholder="Data Tugas Bulanan..." value="{{ old('data_tugas_bulanan') }}">
-                        @error('data_tugas_bulanan')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+                     <div class="form-group">
+                            <label>Nama Tugas Bulanan</label>
+                            <select name="datatugasbulanan_id" id="tugas_bulanan" class="form-control">
+                              <option value="">-- Pilih Nama Tugas -- </option>
+                              @foreach ($datatugasbulanan as $item)
+                                <option value="{{ $item->id }}">{{ $item->tugas_bulanan }}</option>
+                              @endforeach
+                            </select>
+                            @error('datatugasbulanan_id')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
 
                     <div class="mb-3">
                         <label class="form-label">Waktu Tugas</label>
