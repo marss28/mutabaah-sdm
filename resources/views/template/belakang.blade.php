@@ -159,11 +159,16 @@
   </a>
 </li>
 
+{{-- <!-- Nama Tugas Bulanan -->
+<li class="menu-item">
+  <a href="{{ route('datatugasbulanan') }}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+    <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
+  </a>
+</li> --}}
 
 
-
-
-<!-- Data Tugas Bulanan -->
+<!-- Nama Tugas Bulanan -->
 <li class="menu-item">
   <a href="{{ route('datatugasbulanan') }}" class="menu-link">
     <i class="menu-icon tf-icons bx bx-calendar-event"></i>
