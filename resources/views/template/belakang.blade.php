@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard</title>
+    <title>Mutaba'ah</title>
 
     <meta name="description" content="" />
 
@@ -63,6 +63,8 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('template-admin/sneat-1.0.0') }}/assets/js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   </head>
 
   <body>
@@ -195,7 +197,7 @@
     {{-- Tugas Mingguan --}}
     <li class="menu-item">
       <a href="{{ route('tugasmingguan') }}" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+        <i class="menu-icon tf-icons bx bx-calendar-week"></i>
         <div data-i18n="Daily Tasks">Tugas Mingguan</div>
       </a>
     </li>
@@ -203,7 +205,7 @@
     {{-- Tugas Bulanan --}}
     <li class="menu-item">
       <a href="{{ route('tugasbulanan') }}" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+        <i class="menu-icon tf-icons bx bx-calendar-event"></i>
         <div data-i18n="Daily Tasks">Tugas Bulanan</div>
       </a>
     </li>
