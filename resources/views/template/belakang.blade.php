@@ -209,16 +209,18 @@
         <div data-i18n="Daily Tasks">Tugas Bulanan</div>
       </a>
     </li>
+
+    <li class="nav-item menu-items">
+         <a class="nav-link text-success" href="{{ route('export.semua') }}">
+         <span class="menu-icon">
+         <i class="mdi mdi-file-excel"></i>
+         </span>
+         <span class="menu-title" style="margin-left: 35px;">Export Excel</span>
+      </a>
+    </li>
+    
   @endif
 @endauth
-
-{{-- <!-- Nama Tugas Bulanan -->
-<li class="menu-item">
-  <a href="{{ route('datatugasbulanan') }}" class="menu-link">
-    <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-    <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
-  </a>
-</li> --}}
  
         </aside>
         <!-- / Menu -->

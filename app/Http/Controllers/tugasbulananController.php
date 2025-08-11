@@ -30,6 +30,7 @@ class tugasbulananController extends Controller
         'deskripsi' => 'required|string|min:3|max:255',
     ]);
 
+
         foreach ($request->datatugasbulanan_id as $id) {
     tugasbulanan::create([
         'user_id' => Auth::id(),
@@ -38,6 +39,7 @@ class tugasbulananController extends Controller
         'deskripsi' => $request->deskripsi,
     ]);
 }
+
 
 
         return redirect()->route('tugasbulanan')->with('success','Data Berhasil Ditambahkan');
@@ -66,6 +68,7 @@ class tugasbulananController extends Controller
         'waktu_tugas' => 'required|date_format:H:i',
         'deskripsi' => 'required|string|min:3|max:255',
     ]);
+
 
     // Ambil salah satu entry lama (untuk tahu waktu_tugas & deskripsi lama)
     $target = tugasbulanan::findOrFail($id);

@@ -9,12 +9,13 @@ class Tugasmingguan extends Model
     protected $table = 'tugas_mingguan';
     protected $fillable =['user_id', 'data_tugas_mingguan','waktu_tugas','deskripsi'];
 
+    public function datatugas()
+    {
+        return $this->belongsTo(DataTugasMingguan::class, 'data_tugas_mingguan');
+    }
 
-    public function dataTugas()
-{
-    return $this->belongsTo(DataTugasMingguan::class, 'data_tugas_mingguan');
+    public function datatugasmingguan()
+    {
+        return $this->belongsTo(DataTugasMingguan::class, 'data_tugas_mingguan');
+    }
 }
-
-}
-
-
