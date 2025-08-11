@@ -2,4 +2,3 @@
 
 @section('konten')
 
-@endsection
