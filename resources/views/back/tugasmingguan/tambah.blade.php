@@ -14,20 +14,28 @@
                 @csrf
                 <div class="card-body">
 
-                    <div class="form-group mb-3">
-                        <label>Nama Tugas Mingguan</label>
-                        <select name="data_tugas_mingguan" id="nama_tugas" class="form-control">
-                            <option value="" selected disabled>-- Pilih Tugas --</option>
-                            @foreach ($datatugasmingguan as $item)
-                                <option value="{{ $item->id }}" {{ old('data_tugas_mingguan') == $item->id ? 'selected' : '' }}>
-                                    {{ $item->nama_tugas }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('data_tugas_mingguan')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+                  <div class="form-group">
+    <label style="margin-bottom: 20px;">Nama Tugas Harian</label>
+    <div class="row" style="margin-bottom:10px">
+        @foreach ($datatugasharian as $item)
+        <div class="col-md-4">
+            <div class="form-check d-flex align-items-center">
+                <input 
+                    class="form-check-input me-2" 
+                    type="checkbox" 
+                    name="data_tugas_mingguan[]" 
+                    value="{{ $item->id }}" 
+                    id="checkbox_{{ $item->id }}"
+                    {{ in_array($item->id, old('data_tugas_mingguan', $selected ?? [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox_{{ $item->id }}">
+                    {{ $item->nama_tugas }}
+                </label>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
 
                     <div class="form-group mb-3">
                         <label class="form-label">Waktu Tugas</label>

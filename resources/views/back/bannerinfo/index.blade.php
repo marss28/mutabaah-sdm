@@ -77,10 +77,10 @@
 
                     </tbody>
                   </table>
-                    <div class="d-flex justify-content-center small-pagination">
+                   <div class="d-flex justify-content-center small-pagination mt-3" style="margin-right: 200px">
                     {{ $bannerinfo->links('pagination::bootstrap-5') }}
 
-                   </div>
+                </div>
               
 
                 </div>

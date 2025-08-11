@@ -1,10 +1,12 @@
 <section>
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profil /</span> Perbarui Kata Sandi</h4>
+    {{-- <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Profil /</span> Perbarui Kata Sandi
+    </h4> --}}
 
-    <div class="card mb-4">
-        <h5 class="card-header">Perbarui Kata Sandi</h5>
+    <div class="card mb-3"> {{-- ubah dari mb-3 jadi mb-4 --}}
+        {{-- <h5 class="card-header">Perbarui Kata Sandi</h5> --}}
         <div class="card-body">
-            <p class="mb-3">Pastikan akun Anda menggunakan kata sandi yang panjang dan acak agar tetap aman.</p>
+            <p class="mb-4">Pastikan akun Anda menggunakan kata sandi yang panjang dan acak agar tetap aman.</p>
 
             <form method="post" action="{{ route('password.update') }}">
                 @csrf

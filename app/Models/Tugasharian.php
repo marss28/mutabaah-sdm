@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tugasharian extends Model
 {
     protected $table = 'tugas_harian';
-    protected $fillable =['datatugasharian_id','waktu_tugas','deskripsi'];
+    protected $fillable =['user_id', 'datatugasharian_id', 'waktu_tugas', 'deskripsi'];
     protected $guarded = ['id'];
 
     public function datatugasharian()

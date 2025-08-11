@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tugasmingguan extends Model
 {
     protected $table = 'tugas_mingguan';
-    protected $fillable =['data_tugas_mingguan','waktu_tugas','deskripsi'];
+    protected $fillable =['user_id', 'data_tugas_mingguan','waktu_tugas','deskripsi'];
 
 
     public function dataTugas()

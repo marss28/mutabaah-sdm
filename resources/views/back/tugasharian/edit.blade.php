@@ -7,36 +7,46 @@
         <div class="card mb-4">
             <h5 class="card-header">Edit Data</h5>
             <div class="card-body">
-                <form id="form-edit" method="POST" action="{{ route('updatetugasharian', $data->id) }}">
+                <form id="form-edit" method="POST" action="{{ route('updatetugasharian', $target->id) }}">
                     @csrf
                     @method('PUT')
 
                    <div class="form-group">
-                            <label>Nama Tugas Harian</label>
-                            <select name="datatugasharian_id" id="nama_tugas" class="form-control">
-                              <option value="">-- Pilih Nama Tugas -- </option>
-                              @foreach ($datatugasharian as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_tugas }}</option>
-                              @endforeach
-                            </select>
-                            @error('nama_tugas_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
+    <label style="margin-bottom: 20px;">Nama Tugas Harian</label>
+    <div class="row" style="margin-bottom:10px">
+        @foreach ($datatugasharian as $item)
+        <div class="col-md-4">
+            <div class="form-check d-flex align-items-center">
+                <input 
+                    class="form-check-input me-2" 
+                    type="checkbox" 
+                    name="datatugasharian_id[]" 
+                    value="{{ $item->id }}" 
+                    id="checkbox_{{ $item->id }}"
+                    {{ in_array($item->id, old('datatugasharian_id', $selected ?? [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox_{{ $item->id }}">
+                    {{ $item->nama_tugas }}
+                </label>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
                         
                     <div class="mb-3">
-                        <label>Waktu Tugas</label>
-                        <input type="time" name="waktu_tugas" class="form-control" 
-                               value="{{ $data->waktu_tugas }}" 
-                               data-original="{{ $data->waktu_tugas }}">
-                    </div>
+                    <label>Waktu Tugas</label>
+                   <input type="time" name="waktu_tugas" class="form-control"
+                        value="{{ $target->waktu_tugas }}"
+                        data-original="{{ $target->waktu_tugas }}">
+                </div>
 
-                    <div class="mb-3">
-                        <label>Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" 
-                               value="{{ $data->deskripsi }}" 
-                               data-original="{{ $data->deskripsi }}">
-                    </div>
+                <div class="mb-3">
+                    <label>Deskripsi</label>
+                    <input type="text" name="deskripsi" class="form-control" 
+                    value="{{ $target->deskripsi }}" 
+                    data-original="{{ $target->deskripsi }}">
+                </div>
 
                     <button type="submit" class="btn btn-primary">Kirim</button>
                 </form>

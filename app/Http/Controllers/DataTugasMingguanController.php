@@ -31,7 +31,7 @@ class DataTugasMingguanController extends Controller
             'nama_tugas' => $request->nama_tugas,
         ]);
 
-        return redirect()->route('datatugasmingguan')->with('sukses', 'Nama tugas mingguan berhasil ditambahkan.');
+        return redirect()->route('datatugasmingguan')->with('success', 'Data berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -43,15 +43,15 @@ class DataTugasMingguanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'datatugasmingguan' => 'required|string|max:255',
+            'nama_tugas' => 'required|string|max:255',
         ]);
 
         $datatugasmingguan = DataTugasMingguan::findOrFail($id);
         $datatugasmingguan->update([
-            'datatugasmingguan' => $request->datatugasmingguan,
+            'nama_tugas' => $request->nama_tugas,
         ]);
 
-        return redirect()->route('datatugasmingguan')->with('sukses', 'Nama tugas mingguan berhasil diupdate.');
+        return redirect()->route('datatugasmingguan')->with('success', 'Data berhasil diupdate.');
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class DataTugasMingguanController extends Controller
         $datatugasmingguan = dataTugasMingguan::findOrFail($id);
         $datatugasmingguan->delete();
 
-        return redirect()->route('datatugasmingguan')->with('success', 'Nama Tugas mingguan berhasil dihapus.');
+        return redirect()->route('datatugasmingguan')->with('success', 'Data berhasil dihapus.');
     }
 }

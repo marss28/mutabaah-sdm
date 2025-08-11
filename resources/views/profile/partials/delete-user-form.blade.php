@@ -1,7 +1,7 @@
 <section>
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profil /</span> Hapus Akun</h4>
+    <h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Profil /</span> Hapus Akun</h4>
 
-    <div class="card mb-4">
+    <div class="card mb-3">
         <h5 class="card-header text-danger">Hapus Akun</h5>
         <div class="card-body">
             <p class="mb-3">

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tugasharian;
+use App\Models\Datatugasharian;
 use Illuminate\Http\Request;
-use App\Models\datatugasharian;
+use Illuminate\Support\Facades\Auth;
 
 class TugasharianController extends Controller
 {
@@ -18,24 +19,28 @@ class TugasharianController extends Controller
     // Menampilkan form tambah data
     public function formtugasharian()
     {
-        $datatugasharian = datatugasharian::all();
-        return view('back.tugasharian.tambah', compact('datatugasharian'));
+        $datatugasharian = Datatugasharian::all();
+        $selected = []; // saat create belum ada yang dipilih
+        return view('back.tugasharian.tambah', compact('datatugasharian', 'selected'));
     }
 
     // Menyimpan data baru
     public function storetugasharian(Request $request)
     {
         $request->validate([
-            'datatugasharian_id' => 'required|exists:datatugasharian,id',
+            'datatugasharian_id' => 'required|array|exists:datatugasharian,id',
             'waktu_tugas' => 'required|date_format:H:i',
             'deskripsi' => 'required|string|min:3|max:255',
         ]);
 
-        Tugasharian::create([
-            'datatugasharian_id' => $request->datatugasharian_id,
-            'waktu_tugas' => $request->waktu_tugas,
-            'deskripsi' => $request->deskripsi,
-        ]);
+        foreach ($request->datatugasharian_id as $id) {
+            Tugasharian::create([
+                'user_id' => Auth::id(),
+                'datatugasharian_id' => $id,
+                'waktu_tugas' => $request->waktu_tugas,
+                'deskripsi' => $request->deskripsi,
+            ]);
+        }
 
         return redirect()->route('tugasharian')->with('success', 'Data berhasil ditambahkan.');
     }
@@ -43,27 +48,44 @@ class TugasharianController extends Controller
     // Menampilkan form edit data
     public function edittugasharian($id)
     {
-        $data = Tugasharian::findOrFail($id);
-        $datatugasharian = datatugasharian::all();
-        return view('back.tugasharian.edit', compact('data', 'datatugasharian'));
+        $target = Tugasharian::findOrFail($id);
+
+        // Ambil semua ID tugas yang punya waktu & deskripsi sama
+        $selected = Tugasharian::where('waktu_tugas', $target->waktu_tugas)
+            ->where('deskripsi', $target->deskripsi)
+            ->pluck('datatugasharian_id')
+            ->toArray();
+
+        $datatugasharian = Datatugasharian::all();
+
+        return view('back.tugasharian.edit', compact('datatugasharian', 'selected', 'target'));
     }
 
     // Memperbarui data
     public function updatetugasharian(Request $request, $id)
     {
         $request->validate([
-            'datatugasharian_id' => 'required|exists:datatugasharian,id',
+            'datatugasharian_id' => 'required|array|exists:datatugasharian,id',
             'waktu_tugas' => 'required|date_format:H:i',
             'deskripsi' => 'required|string|min:3|max:255',
         ]);
 
-        $data = Tugasharian::findOrFail($id);
+        $target = Tugasharian::findOrFail($id);
 
-        $data->update([
-            'datatugasharian_id' => $request->datatugasharian_id,
-            'waktu_tugas' => $request->waktu_tugas,
-            'deskripsi' => $request->deskripsi,
-        ]);
+        // Hapus semua tugas lama dalam grup yang sama
+        Tugasharian::where('waktu_tugas', $target->waktu_tugas)
+            ->where('deskripsi', $target->deskripsi)
+            ->delete();
+
+        // Simpan ulang yang dipilih
+        foreach ($request->datatugasharian_id as $id_tugas) {
+            Tugasharian::create([
+                'user_id' => Auth::id(),
+                'datatugasharian_id' => $id_tugas,
+                'waktu_tugas' => $request->waktu_tugas,
+                'deskripsi' => $request->deskripsi,
+            ]);
+        }
 
         return redirect()->route('tugasharian')->with('success', 'Data berhasil diperbarui.');
     }

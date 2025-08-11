@@ -30,7 +30,7 @@ class DatatugasharianController extends Controller
             'nama_tugas' => $request->nama_tugas,
         ]);
 
-        return redirect()->route('datatugasharian')->with('success', 'Nama tugas harian berhasil ditambahkan.');
+        return redirect()->route('datatugasharian')->with('success', 'Data berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -51,7 +51,7 @@ class DatatugasharianController extends Controller
             'nama_tugas' => $request->nama_tugas,
         ]);
 
-        return redirect()->route('datatugasharian')->with('success', 'Nama tugas harian berhasil diupdate.');
+        return redirect()->route('datatugasharian')->with('success', 'Data berhasil diupdate.');
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class DatatugasharianController extends Controller
         $datatugasharian = datatugasharian::findOrFail($id);
         $datatugasharian->delete();
 
-        return redirect()->route('datatugasharian')->with('success', 'Nama Tugas Harian berhasil dihapus.');
+        return redirect()->route('datatugasharian')->with('success', 'Data berhasil dihapus.');
     }
 }
