@@ -27,35 +27,30 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
 {
-    $request->validate([
-    
-        'name' => 'required|string|max:255',
-        'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        // validasi lain
-    ]);
+   $request->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|max:255',
+    'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+]);
 
-    if ($request->hasFile('profile_photo')) {
+$user = auth()->user();
+$filename = $user->profile_photo; // default pakai foto lama
+
+if ($request->hasFile('profile_photo')) {
     $file = $request->file('profile_photo');
     $filename = time().'_'.$file->getClientOriginalName();
-    // Simpan ke storage/app/public/profile_photos
-    $file->storeAs('public/profile_photos', $filename);
-
-    // Update di database
-    // auth()->user()->update([
-        
-    // ]);
+    $file->storeAs('profile_photos', $filename, 'public'); // ✅ benar
 }
 
-
-    // update data lain
-    auth()->user()->update([
-        'name' => $request->name,
-        'email' => $request->email,
-        'profile_photo' => $filename,
-    ]);
+$user->update([
+    'name' => $request->name,
+    'email' => $request->email,
+    'profile_photo' => $filename,
+]);
 
     return back()->with('success', 'Profil berhasil diperbarui.');
 }
+
 
 
     /**

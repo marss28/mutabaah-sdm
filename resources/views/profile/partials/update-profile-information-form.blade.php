@@ -17,13 +17,9 @@
                 <div class="card-body">
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
                       <input type="file" name="profile_photo">
-                          <img
-                        src="{{ asset('storage/profile_photos/' . $user->profile_photo) }}"
+                          <img src="{{ asset('storage/profile_photos/' . $user->profile_photo) }}" height="100" width="100" class="d-block rounded">
 
-                       class="d-block rounded" 
-                       height="100" width="100"
-                    />
-
+ 
                         </div>
                       </div>
             
