@@ -74,9 +74,10 @@
             </table>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-3">
-                {{ $tugasharian->links() }}
-            </div>
+            <div class="d-flex justify-content-center small-pagination mt-3" style="margin-right: 200px">
+                    {{ $tugasharian->links('pagination::bootstrap-5') }}
+
+                </div>
         </div>
     </div>
 </div>

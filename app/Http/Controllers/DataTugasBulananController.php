@@ -35,7 +35,7 @@ class DataTugasBulananController extends Controller
             'tugas_bulanan' => $request->tugas_bulanan
         ]);
 
-        return redirect()->route('datatugasbulanan')->with('success', 'data tugas bulanan berhasil ditambahkan');
+        return redirect()->route('datatugasbulanan')->with('success', 'Data berhasil ditambahkan');
         
     }
 
@@ -58,7 +58,7 @@ class DataTugasBulananController extends Controller
            'tugas_bulanan' => $request->tugas_bulanan,
         ]);
 
-        return redirect()->route('datatugasbulanan')->with('success', 'data tugas bulanan berhasil diupdate');
+        return redirect()->route('datatugasbulanan')->with('success', 'Data berhasil diupdate');
     }
 
 
@@ -67,6 +67,6 @@ class DataTugasBulananController extends Controller
         $datatugasbulanan = datatugasbulanan::findOrFail($id);
         $datatugasbulanan->delete();
 
-        return redirect()->route('datatugasbulanan')->with('success', 'data berhasil dihapus');
+        return redirect()->route('datatugasbulanan')->with('success', 'Data berhasil dihapus');
     }
 }

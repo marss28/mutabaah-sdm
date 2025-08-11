@@ -15,46 +15,48 @@ class ProfileController extends Controller
     /**
      * Tampilkan form edit profil.
      */
-    public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+    public function edit()
+{
+    $user = Auth::user();
+    return view('profile.edit', compact('user'));
+}
+          
 
     /**
      * Update data profil dan foto.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $user = $request->user();
+    public function update(Request $request)
+{
+    $request->validate([
+    
+        'name' => 'required|string|max:255',
+        'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        // validasi lain
+    ]);
 
-        // Validasi dan update data biasa
-        $user->fill($request->validated());
+    if ($request->hasFile('profile_photo')) {
+    $file = $request->file('profile_photo');
+    $filename = time().'_'.$file->getClientOriginalName();
+    // Simpan ke storage/app/public/profile_photos
+    $file->storeAs('public/profile_photos', $filename);
 
-        // Reset email verification jika email diubah
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
+    // Update di database
+    // auth()->user()->update([
+        
+    // ]);
+}
 
-        // Upload foto profil jika ada
-        if ($request->hasFile('profile_photo')) {
-            $file = $request->file('profile_photo');
-            $path = $file->store('profile_photos', 'public'); // disimpan ke storage/app/public/profile_photos
 
-            // Hapus foto lama jika ada
-            if ($user->profile_photo) {
-                Storage::disk('public')->delete($user->profile_photo);
-            }
+    // update data lain
+    auth()->user()->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'profile_photo' => $filename,
+    ]);
 
-            // Simpan path ke database
-            $user->profile_photo = $path;
-        }
+    return back()->with('success', 'Profil berhasil diperbarui.');
+}
 
-        $user->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
 
     /**
      * Hapus akun user.

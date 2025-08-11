@@ -6,49 +6,32 @@
         @csrf
     </form>
 
-    <div class="card mb-4">
+    <div class="card mb-3">
         <h5 class="card-header">Profil</h5>
         <div class="card-body">
             <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                 @csrf
-                @method('patch')
-
+                @method('PUT')
+            
                 {{-- Upload Foto --}}
                 <div class="card-body">
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
-                       <img
-                            src="{{ $user->profile_photo ? asset('storage/' . $user->profile_photo) : asset('template-admin/sneat-1.0.0/img/avatars/1.png') }}"
-                            alt="user-avatar"
-                            class="d-block rounded"
-                            height="100"
-                            width="100"
-                            id="uploadedAvatar"
-                            />
+                      <input type="file" name="profile_photo">
+                          <img
+                        src="{{ asset('storage/profile_photos/' . $user->profile_photo) }}"
 
-                        <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Tambah Foto</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              accept="image/png, image/jpeg"
-                            />
-                          </label>
-                          <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                            <i class="bx bx-reset d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Hapus</span>
-                          </button>
+                       class="d-block rounded" 
+                       height="100" width="100"
+                    />
+
                         </div>
                       </div>
-                    </div>
-
+            
+                
                    
 
                 {{-- Name --}}
-                <div class="mb-3">
+                <div class="mb-3" style="margin-left: 10px">
                     <label for="name" class="form-label">Nama</label>
                     <input
                         type="text"
@@ -66,7 +49,7 @@
                 </div>
 
                 {{-- Email --}}
-                <div class="mb-3">
+                <div class="mb-3" style="margin-left: 10px">
                     <label for="email" class="form-label">Email</label>
                     <input
                         type="email"
@@ -101,7 +84,7 @@
                 </div>
 
                 {{-- Submit --}}
-                <div class="mt-4">
+                <div class="mt-4" style="margin-left: 10px">
                     <button type="submit" class="btn btn-primary">Simpan</button>
 
                     @if (session('status') === 'profile-updated')
@@ -109,6 +92,6 @@
                     @endif
                 </div>
             </form>
-        </div>
+        
     </div>
 </section>

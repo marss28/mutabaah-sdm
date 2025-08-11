@@ -1,74 +1,59 @@
 @extends('template.belakang')
 
 @section('konten')
-
 <div class="row mt-2">
     <div class="col-8">
         <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Tambah Data</h5>
-            </div>
+        <h5 class="card-header">Edit Data</h5>
+        <div class="card-body">
+            
+           <form method="POST" action="{{ route('updatetugasmingguan', $target->id) }}">
+    @csrf
+    @method('PUT')
 
-            {{-- FORM dimulai di sini --}}
-            <form method="POST" action="{{ route('updatetugasmingguan') }}">
-                @csrf
-                <div class="card-body">
+ <div class="form-group">
+                <label style="margin-bottom: 20px;">Nama Tugas Mingguan</label>
+                <div class="row" style="margin-bottom:10px">
+                                            @php
+                            $selectedIds = $tugasmingguan->pluck('data_tugas_mingguan')->toArray();
+                        @endphp
 
-                    <div class="form-group mb-3">
-                        <label>Nama Tugas Mingguan</label>
-                        <select name="data_tugas_mingguan" id="nama_tugas" class="form-control">
-                            <option value="" selected disabled>-- Pilih Tugas --</option>
-                            @foreach ($datatugasmingguan as $item)
-                                <option value="{{ $item->id }}" {{ old('data_tugas_mingguan') == $item->id ? 'selected' : '' }}>
+                        @foreach ($datatugasmingguan as $item)
+                        <div class="col-md-4">
+                            <div class="form-check d-flex align-items-center">
+                                <input 
+                                    class="form-check-input me-2" 
+                                    type="checkbox" 
+                                    name="data_tugas_mingguan[]" 
+                                    value="{{ $item->id }}" 
+                                    id="checkbox_{{ $item->id }}"
+                                    {{ in_array($item->id, $selectedIds) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="checkbox_{{ $item->id }}">
                                     {{ $item->nama_tugas }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('data_tugas_mingguan')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        @endforeach
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Waktu Tugas</label>
-                        <input type="time" name="waktu_tugas" class="form-control" value="{{ old('waktu_tugas') }}">
-                        @error('waktu_tugas')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" value="{{ old('deskripsi') }}">
-                        @error('deskripsi')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Kirim</button>
                 </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label>Waktu Tugas</label>
+                    <input type="time" name="waktu_tugas" class="form-control" value="{{ $target->waktu_tugas }}">
+
+                </div>
+
+                <div class="mb-3">
+                    <label>Deskripsi</label>
+                    <input type="text" name="deskripsi" class="form-control" value="{{ $target->deskripsi }}">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Kirim</button>
             </form>
-            {{-- FORM ditutup di sini --}}
+            </div>
         </div>
     </div>
 </div>
-
 @endsection
-
-Script untuk deteksi perubahan tanpa SweetAlert
-<script>
-    document.getElementById('form-edit').addEventListener('submit', function(e) {
-        let isChanged = false;
-
-        this.querySelectorAll('[data-original]').forEach(function(input) {
-            if (input.value !== input.getAttribute('data-original')) {
-                isChanged = true;
-            }
-        });
-
-        if (!isChanged) {
-            e.preventDefault(); // Cegah submit
-            alert('Tidak ada perubahan yang dilakukan!');
-        }
-    });
-</script>

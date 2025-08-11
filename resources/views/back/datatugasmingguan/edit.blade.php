@@ -17,7 +17,8 @@
         <input type="text" name="nama_tugas" class="form-control" value="{{ $datatugasmingguan->nama_tugas }}">
     </div>
 
-    <button type="submit" class="btn btn-success">Update</button>
+    <button type="submit" class="btn btn-primary">Update</button>
+          <a href="{{ route('datatugasmingguan') }}" class="btn btn-secondary">Batal</a>
 </form>
 
       </div>

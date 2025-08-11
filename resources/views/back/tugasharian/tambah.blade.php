@@ -26,17 +26,26 @@
                     @endif
 
                     <div class="form-group">
-                            <label>Nama Tugas Harian</label>
-                            <select name="datatugasharian_id" id="nama_tugas" class="form-control">
-                              <option value="">-- Pilih Nama Tugas -- </option>
-                              @foreach ($datatugasharian as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_tugas }}</option>
-                              @endforeach
-                            </select>
-                            @error('nama_tugas_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
+    <label style="margin-bottom: 20px;">Nama Tugas Harian</label>
+    <div class="row" style="margin-bottom:10px">
+        @foreach ($datatugasharian as $item)
+        <div class="col-md-4">
+            <div class="form-check d-flex align-items-center">
+                <input 
+                    class="form-check-input me-2" 
+                    type="checkbox" 
+                    name="datatugasharian_id[]" 
+                    value="{{ $item->id }}" 
+                    id="checkbox_{{ $item->id }}"
+                    {{ in_array($item->id, old('datatugasharian_id', $selected ?? [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox_{{ $item->id }}">
+                    {{ $item->nama_tugas }}
+                </label>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
 
                     <div class="mb-3">
                         <label class="form-label">Waktu Tugas</label>
