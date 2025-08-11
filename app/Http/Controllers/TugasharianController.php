@@ -6,13 +6,17 @@ use App\Models\Tugasharian;
 use Illuminate\Http\Request;
 use App\Models\datatugasharian;
 
-class TugasharianController extends Controller
-{
+
     // Menampilkan daftar tugas harian
+   class TugasharianController extends Controller
+{
     public function index()
     {
-        $tugasharian = Tugasharian::with('datatugasharian')->paginate(5);
-        return view('back.tugasharian.index', compact('tugasharian'));
+        // Ambil data tugas harian langsung dari model datatugasharian
+        $datatugasharian = datatugasharian::paginate(5);
+
+        // Kirim ke view dengan nama variabel yang sama
+        return view('back.tugasharian.index', compact('datatugasharian'));
     }
 
     // Menampilkan form tambah data

@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TugasController;
 use App\Http\Controllers\searchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BannerinfoController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DatatugasharianController;
 use App\Http\Controllers\DataTugasBulananController;
 use App\Http\Controllers\DataTugasMingguanController;
+
 
 
 Route::get('/', function () {
@@ -113,23 +115,24 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::put('/updatetugasharian/{id}', [TugasharianController::class,  'updatetugasharian'])->name('updatetugasharian');
     Route::delete('/deletetugasharian/{id}', [TugasharianController::class, 'deletetugasharian'])->name('deletetugasharian');
 
- 
-   
 
-    
-   
-    
 
-    
-    
+Route::get('/export-semua', [TugasController::class, 'exportSemua'])->name('export.semua');
 
-    
+
+Route::get('/excel', [TugasController::class, 'exportHarian'])->name('excel');
+Route::get('/import-tugas', [TugasController::class, 'formImport'])->name('tugas.import');
+Route::post('/preview-tugas', [TugasController::class, 'preview'])->name('tugas.preview');
+Route::post('/import-tugas', [TugasController::class, 'import'])->name('tugas.import.store');
+Route::get('/export-tugas/{jenis}', [TugasController::class, 'export'])->name('tugas.export');
+Route::get('/pdf-tugas/{jenis}', [TugasController::class, 'pdf'])->name('tugas.pdf');
+
+
+
+Route::get('/chart-tugas', [TugasController::class, 'chartTugas']);
+
 
     Route::get('/tugas/search', [searchController::class, 'search'])->name('tugas.search');
-
-
-
-    
 
 });
 

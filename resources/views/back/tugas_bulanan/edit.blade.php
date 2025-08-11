@@ -11,17 +11,29 @@
                 @method('PUT')
 
                 <div class="form-group">
-                            <label>Nama Tugas Bulanan</label>
-                            <select name="datatugasbulanan_id" id="nama_tugas" class="form-control">
-                              <option value="">-- Pilih Nama Tugas -- </option>
-                              @foreach ($tugasbulanan as $item)
-                                <option value="{{ $item->id }}">{{ $item->tugas_bulanan }}</option>
-                              @endforeach
-                            </select>
-                            @error('tugas_bulanan_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                <label>Nama Tugas Bulanan</label>
+                <div class="row ps-2"> {{-- padding start agar nempel kiri --}}
+                    @foreach ($tugasbulanan as $item)
+                    <div class="col-md-4 mb-2"> {{-- Ubah col-md-* sesuai banyaknya kolom --}}
+                        <div class="form-check d-flex align-items-center">
+                        <input 
+                            class="form-check-input me-2" 
+                            type="checkbox" 
+                            name="tugas_bulanan_id[]" 
+                            value="{{ $item->id }}" 
+                            id="checkbox_{{ $item->id }}">
+                        <label class="form-check-label" for="checkbox_{{ $item->id }}">
+                            {{ $item->tugas_bulanan }}
+                        </label>
                         </div>
+                    </div>
+                    @endforeach
+                </div>
+                @error('tugas_bulanan_id')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+                </div>
+
 
                 <div class="mb-3">
                     <label>Waktu Tugas</label>

@@ -25,18 +25,28 @@
                         </div>
                     @endif
 
-                     <div class="form-group">
-                            <label>Nama Tugas Bulanan</label>
-                            <select name="datatugasbulanan_id" id="tugas_bulanan" class="form-control">
-                              <option value="">-- Pilih Nama Tugas -- </option>
-                              @foreach ($datatugasbulanan as $item)
-                                <option value="{{ $item->id }}">{{ $item->tugas_bulanan }}</option>
-                              @endforeach
-                            </select>
-                            @error('datatugasbulanan_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                                    <div class="form-group">
+                <label style="margin-bottom: 20px;">Nama Tugas Bulanan</label>
+                <div class="row" style="margin-bottom:10px">
+                    @foreach ($datatugasbulanan as $item)
+                    <div class="col-md-4"> {{-- kamu bisa ubah ke col-md-6 atau col-12 sesuai lebar yang diinginkan --}}
+                        <div class="form-check d-flex align-items-center">
+                        <input 
+                            class="form-check-input me-2" 
+                            type="checkbox" 
+                            name="datatugasbulanan_id[]" 
+                            value="{{ $item->id }}" 
+                            id="checkbox_{{ $item->id }}">
+                        <label class="form-check-label" for="checkbox_{{ $item->id }}">
+                            {{ $item->tugas_bulanan }}
+                        </label>
                         </div>
+                    </div>
+                    @endforeach
+                </div>
+                </div>
+
+
 
                     <div class="mb-3">
                         <label class="form-label">Waktu Tugas</label>

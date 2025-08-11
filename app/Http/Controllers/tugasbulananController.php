@@ -29,9 +29,11 @@ class tugasbulananController extends Controller
         'deskripsi' => 'required|string|min:3|max:255',
     ]);
 
-    // lanjut simpan data ke database
-        $tugasbulanan = $request->all();
-        tugasbulanan::create($tugasbulanan);
+        tugasbulanan::create([
+            'datatugasbulanan_id' => $request->datatugasbulanan_id,
+            'waktu_tugas' => $request->waktu_tugas,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
         return redirect()->route('tugasbulanan')->with('success','Data Berhasil Ditambahkan');
      }
@@ -56,7 +58,7 @@ class tugasbulananController extends Controller
     ]);
 
     $tugasbulanan->update([
-        'datatugasbulanan' => $request->datatugasbulanan,
+        'datatugasbulanan_id' => $request->datatugasbulanan_id,
         'waktu_tugas' => $request->waktu_tugas,
         'deskripsi' => $request->deskripsi,
     ]);

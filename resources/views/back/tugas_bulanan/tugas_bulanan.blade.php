@@ -2,7 +2,7 @@
 
 @section('konten')
 
-<div class="container mt-3">
+<div class="row mt-2">
     <div class="card">
         <div class="d-flex justify-content-between align-items-center me-4">
             <h5 class="card-header">Tugas Bulanan</h5>
