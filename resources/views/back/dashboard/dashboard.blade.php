@@ -28,7 +28,7 @@
         <div class="d-flex justify-content-between align-items-center mb-2">
           <div>
             <div class="text-muted small">Total Users</div>
-            <div class="fs-3 fw-bold">{{ $totalUser }}</div>
+            <div class="fs-3 fw-bold"> {{ $totalUser }} </div>
           </div>
           <div class="bg-primary text-white rounded-circle p-2">
             <i class="bx bx-user fs-4"></i>
@@ -103,6 +103,40 @@
 </div>
 </div>
 </div>
+<div class="row mt-3">
+  <div class="col-md-12">
+    <div class="card h-100">
+        <div class="d-flex justify-content-between align-items-center me-4">
+            <h5 class="card-header">Data Tugas</h5>
+            <a href="{{ route('tugas.export') }}" class="btn btn-success">Export Excel</a>
+        </div>
+
+        <div class="table-responsive text-nowrap mt-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Tugas Harian</th>
+                        <th>Tugas Mingguan</th>
+                        <th>Tugas Bulanan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $no = 1; @endphp
+                  
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $tugasharian }}</td>
+                        <td>{{ $tugasmingguan }}</td>
+                        <td>{{ $tugasbulanan }}</td>
+
+                    </tr>
+                        
+                  
+                </tbody>
+            </table>
+        </div>
+  </div>
 
 
 
@@ -128,7 +162,7 @@ const donutChart = new Chart(ctx, {
             ],
             borderColor: [
                 'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
+                'rgba(56, 172, 200, 1)',
                 'rgba(75, 192, 192, 1)'
             ],
             borderWidth: 1

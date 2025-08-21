@@ -7,17 +7,13 @@ use App\Models\Datatugasharian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-    // Menampilkan daftar tugas harian
-   class TugasharianController extends Controller
+class TugasharianController extends Controller
 {
+    // Menampilkan daftar tugas harian
     public function index()
     {
-        // Ambil data tugas harian langsung dari model datatugasharian
-        $datatugasharian = datatugasharian::paginate(5);
-
-        // Kirim ke view dengan nama variabel yang sama
-        return view('back.tugasharian.index', compact('datatugasharian'));
+        $tugasharian = Tugasharian::paginate(5);
+        return view('back.tugasharian.index', compact('tugasharian'));
     }
 
     // Menampilkan form tambah data
@@ -37,14 +33,12 @@ use Illuminate\Support\Facades\Auth;
             'deskripsi' => 'required|string|min:3|max:255',
         ]);
 
-        foreach ($request->datatugasharian_id as $id) {
-            Tugasharian::create([
-                'user_id' => Auth::id(),
-                'datatugasharian_id' => $id,
-                'waktu_tugas' => $request->waktu_tugas,
-                'deskripsi' => $request->deskripsi,
-            ]);
-        }
+        Tugasharian::create([
+            'user_id' => Auth::id(),
+            'datatugasharian_id' => implode(',', $request->datatugasharian_id), // simpan gabungan
+            'waktu_tugas' => $request->waktu_tugas,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
         return redirect()->route('tugasharian')->with('success', 'Data berhasil ditambahkan.');
     }
@@ -54,11 +48,8 @@ use Illuminate\Support\Facades\Auth;
     {
         $target = Tugasharian::findOrFail($id);
 
-        // Ambil semua ID tugas yang punya waktu & deskripsi sama
-        $selected = Tugasharian::where('waktu_tugas', $target->waktu_tugas)
-            ->where('deskripsi', $target->deskripsi)
-            ->pluck('datatugasharian_id')
-            ->toArray();
+        // Pecah datatugasharian_id yang sudah tersimpan (string "1,2,3") jadi array
+        $selected = explode(',', $target->datatugasharian_id);
 
         $datatugasharian = Datatugasharian::all();
 
@@ -76,20 +67,12 @@ use Illuminate\Support\Facades\Auth;
 
         $target = Tugasharian::findOrFail($id);
 
-        // Hapus semua tugas lama dalam grup yang sama
-        Tugasharian::where('waktu_tugas', $target->waktu_tugas)
-            ->where('deskripsi', $target->deskripsi)
-            ->delete();
-
-        // Simpan ulang yang dipilih
-        foreach ($request->datatugasharian_id as $id_tugas) {
-            Tugasharian::create([
-                'user_id' => Auth::id(),
-                'datatugasharian_id' => $id_tugas,
-                'waktu_tugas' => $request->waktu_tugas,
-                'deskripsi' => $request->deskripsi,
-            ]);
-        }
+        $target->update([
+            'user_id' => Auth::id(),
+            'datatugasharian_id' => implode(',', $request->datatugasharian_id), // update gabungan
+            'waktu_tugas' => $request->waktu_tugas,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
         return redirect()->route('tugasharian')->with('success', 'Data berhasil diperbarui.');
     }

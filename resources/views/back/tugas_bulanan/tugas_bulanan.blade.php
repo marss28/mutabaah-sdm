@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Data Tugas Bulanan</th>
+                        <th>Nama Tugas Bulanan</th>
                         <th>Waktu Tugas</th>
                         <th>Deskripsi</th>
                         <th>Aksi</th>
@@ -25,7 +25,13 @@
                     @foreach ($tugasbulanan as $items)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $items->datatugasbulanan->tugas_bulanan ?? '-' }}</td>
+                        <td> @php
+                        // pecah string id jadi array
+                        $ids = explode(',', $items->datatugasbulanan_id);
+                        // ambil semua nama_tugas dari tabel datatugasharian
+                        $names = \App\Models\datatugasbulanan::whereIn('id', $ids)->pluck('tugas_bulanan')->toArray();
+                    @endphp
+                    {{ implode(', ', $names) }}</td>
                         <td>{{ $items->waktu_tugas }}</td>
                         <td>{{ $items->deskripsi }}</td>
                         <td class="position-relative">

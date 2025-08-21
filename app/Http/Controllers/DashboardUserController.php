@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\bannerinfo;
+
 use App\Models\Tugasharian;
 
-use App\Models\Tugasmingguan;
-
+use App\Models\tugasbulanan;
 use Illuminate\Http\Request;
+use App\Models\Tugasmingguan;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardUserController extends Controller
@@ -17,8 +19,12 @@ class DashboardUserController extends Controller
 
         $tugasharian = Tugasharian::count();
         $tugasmingguan = Tugasmingguan::count();
-        $tugasbulanan = Tugasbulanan::count();
+        $tugasbulanan = tugasbulanan::count();
+       
+        $bannerinfo = bannerinfo::latest()->get(); 
         
-        return view('back.dashboard.dashboarduser', compact('tugasharian', 'tugasmingguan', 'tugasbulanan'));
+        return view('back.dashboard.dashboarduser', compact('tugasharian', 'tugasmingguan', 'tugasbulanan', 'bannerinfo'));
     }
+
+    
 }

@@ -7,15 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Tugasmingguan extends Model
 {
     protected $table = 'tugas_mingguan';
-    protected $fillable =['user_id', 'data_tugas_mingguan','waktu_tugas','deskripsi'];
+    protected $fillable =['user_id', 'datatugasmingguan_id', 'waktu_tugas', 'deskripsi'];
+    protected $guarded = ['id'];
 
     public function datatugas()
     {
-        return $this->belongsTo(DataTugasMingguan::class, 'data_tugas_mingguan');
+        return $this->belongsTo(DataTugasMingguan::class, 'datatugasmingguan_id');
     }
 
     public function datatugasmingguan()
     {
-        return $this->belongsTo(DataTugasMingguan::class, 'data_tugas_mingguan');
+        return $this->belongsTo(DataTugasMingguan::class, 'datatugasmingguan_id');
     }
 }

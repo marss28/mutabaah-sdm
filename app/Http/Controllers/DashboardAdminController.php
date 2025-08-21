@@ -22,7 +22,7 @@ class DashboardAdminController extends Controller
       return view('back.dashboard.dashboard', compact('totalUser', 'tugasharian', 'tugasmingguan', 'tugasbulanan'));
     
    }
-
+   
 
 
 }

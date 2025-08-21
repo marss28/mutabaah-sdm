@@ -47,7 +47,7 @@ class BannerinfoController extends Controller
 {
     $request->validate([
         'nama_banner'=> 'required|string|max:255',
-        'foto'=> 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        'foto'=> 'required|image|mimes:jpg,jpeg,png|max:2048'
     ]);
 
     $bannerinfo = bannerinfo::findOrFail($id);

@@ -152,7 +152,7 @@
     <li class="menu-item">
       <a href="{{ route('datatugasharian') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-calendar-check"></i>
-        <div data-i18n="Daily Tasks">Nama Tugas Harian</div>
+        <div data-i18n="Daily Tasks">Tugas Harian</div>
       </a>
     </li>
 
@@ -160,7 +160,7 @@
     <li class="menu-item">
       <a href="{{ route('datatugasmingguan')}}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-calendar-week"></i>
-        <div data-i18n="Weekly Tasks">Nama Tugas Mingguan</div>
+        <div data-i18n="Weekly Tasks">Tugas Mingguan</div>
       </a>
     </li>
 
@@ -168,7 +168,7 @@
     <li class="menu-item">
       <a href="{{ route('datatugasbulanan') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-calendar-event"></i>
-        <div data-i18n="Monthly Tasks">Nama Tugas Bulanan</div>
+        <div data-i18n="Monthly Tasks">Tugas Bulanan</div>
       </a>
     </li>
 
@@ -210,14 +210,7 @@
       </a>
     </li>
 
-    <li class="nav-item menu-items">
-         <a class="nav-link text-success" href="{{ route('export.semua') }}">
-         <span class="menu-icon">
-         <i class="mdi mdi-file-excel"></i>
-         </span>
-         <span class="menu-title" style="margin-left: 35px;">Export Excel</span>
-      </a>
-    </li>
+   
     
   @endif
 @endauth
@@ -260,7 +253,7 @@
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
+                    <div class="avatar ">
                       <img src="{{ Auth::user()->profile_photo ? asset('storage/profile_photos/' . Auth::user()->profile_photo) : asset('template-admin/sneat-1.0.0/assets/img/avatars/1.png') }}" alt class="rounded-circle border border-2 border-primary  w-px-60 h-px-60" />
                     </div>
                   </a>
@@ -269,7 +262,7 @@
                       <a class="dropdown-item" href="{{ route('profile.update') }}">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
+                            <div class="avatar">
                               <img src="{{ Auth::user()->profile_photo ? asset('storage/profile_photos/' . Auth::user()->profile_photo) : asset('template-admin/sneat-1.0.0/assets/img/avatars/1.png') }}" alt class="rounded-circle border border-2 border-primary w-px-60 h-px-60" />
                             </div>
                           </div>

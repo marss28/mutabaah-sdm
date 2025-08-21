@@ -2,106 +2,88 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tugasmingguan;
 use App\Models\DataTugasMingguan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TugasmingguanController extends Controller
 {
+    // Menampilkan daftar tugas mingguan
     public function index(){
-        $tugasmingguan = Tugasmingguan::with('dataTugas')->paginate(5);
+        $tugasmingguan = Tugasmingguan::paginate(5);
         return view('back.tugasmingguan.index',compact('tugasmingguan'));
     }
 
+    // Menampilkan form tambah data
+    public function formtugasmingguan()
+    {
+        $datatugasmingguan = DataTugasMingguan::all();
+        $selected = []; // saat create belum ada yang dipilih
+        return view('back.tugasmingguan.tambah', compact('datatugasmingguan', 'selected'));
+    }
 
-    public function formtugasmingguan(){
-    $datatugasmingguan = DataTugasMingguan::all();
-    return view('back.tugasmingguan.tambah', compact('datatugasmingguan'));
-}
-
-
-
-     public function storetugasmingguan(Request $request)
-{
-            $request->validate([
-            'data_tugas_mingguan' => 'required|array|exists:data_tugas_mingguan,id',
+    // Menyimpan data baru
+    public function storetugasmingguan(Request $request)
+    {
+        $request->validate([
+            'datatugasmingguan_id' => 'required|array|exists:datatugasmingguan,id',
             'waktu_tugas' => 'required|date_format:H:i',
-            'deskripsi' => 'required|string|max:255',
+            'deskripsi' => 'required|string|min:3|max:255',
         ]);
 
-
-             foreach ($request->data_tugas_mingguan as $id) {
+        // Simpan dalam satu baris saja
         Tugasmingguan::create([
-        'user_id' => Auth::id(),
-        'data_tugas_mingguan' => $id,
-        'waktu_tugas' => $request->waktu_tugas,
-        'deskripsi' => $request->deskripsi,
+            'user_id' => Auth::id(),
+            'datatugasmingguan_id' => implode(',', $request->datatugasmingguan_id), // simpan array jadi string
+            'waktu_tugas' => $request->waktu_tugas,
+            'deskripsi' => $request->deskripsi,
         ]);
 
+        return redirect()->route('tugasmingguan')->with('success', 'Data berhasil ditambahkan.');
+    }
 
+    // Menampilkan form edit data
+    public function edittugasmingguan($id)
+    {
+        $target = Tugasmingguan::findOrFail($id);
 
-        return redirect()->route('tugasmingguan')->with('success','Data Berhasil Ditambahkan');
-        }
-     }
+        // pecah string menjadi array untuk ditampilkan di checkbox
+        $selected = explode(',', $target->datatugasmingguan_id);
 
+        $datatugasmingguan = DataTugasMingguan::all();
 
-     public function edittugasmingguan($id)
-{
-    $target = Tugasmingguan::findOrFail($id);
+        return view('back.tugasmingguan.edit', compact('datatugasmingguan', 'selected', 'target'));
+    }
 
-    // Ambil semua tugas yang 1 grup (waktu & deskripsi sama)
-    $tugasmingguan = Tugasmingguan::where('waktu_tugas', $target->waktu_tugas)
-        ->where('deskripsi', $target->deskripsi)
-        ->get();
+    // Memperbarui data
+    public function updatetugasmingguan(Request $request, $id)
+    {
+        $request->validate([
+            'datatugasmingguan_id' => 'required|array|exists:datatugasmingguan,id',
+            'waktu_tugas' => 'required|date_format:H:i',
+            'deskripsi' => 'required|string|min:3|max:255',
+        ]);
 
-    $datatugasmingguan = DataTugasMingguan::all();
+        $target = Tugasmingguan::findOrFail($id);
 
-    return view('back.tugasmingguan.edit', compact('tugasmingguan', 'datatugasmingguan', 'target'));
-}
+        // Update data (satu baris saja)
+        $target->update([
+            'user_id' => Auth::id(),
+            'datatugasmingguan_id' => implode(',', $request->datatugasmingguan_id),
+            'waktu_tugas' => $request->waktu_tugas,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
- public function updatetugasmingguan(Request $request, $id)
-{
-    $request->validate([
-        'data_tugas_mingguan' => 'required|array',
-        'data_tugas_mingguan.*' => 'exists:data_tugas_mingguan,id',
-        'waktu_tugas' => 'required|date_format:H:i',
-        'deskripsi' => 'required|string|min:3|max:255',
-    ]);
+        return redirect()->route('tugasmingguan')->with('success', 'Data berhasil diperbarui.');
+    }
 
-    // Ambil salah satu entry lama (untuk tahu waktu_tugas & deskripsi lama)
-    $target = Tugasmingguan::findOrFail($id);
-
-    // Hapus semua tugas lama dalam 1 grup
-    Tugasmingguan::where('waktu_tugas', $target->waktu_tugas)
-        ->where('deskripsi', $target->deskripsi)
-        ->delete();
-
-    // Simpan ulang berdasarkan checkbox terpilih
-   foreach ($request->data_tugas_mingguan as $id_tugas) {
-    Tugasmingguan::create([
-        'data_tugas_mingguan' => $id_tugas,
-        'waktu_tugas' => $request->waktu_tugas,
-        'deskripsi' => $request->deskripsi,
-    ]);
-}
-
-
-    return redirect()->route('tugasmingguan')->with('success', 'Data berhasil diperbarui.');
-}
-
-
+    // Menghapus data
     public function deletetugasmingguan($id)
-{
-    $data = Tugasmingguan::findOrFail($id);
-    $data->delete();
+    {
+        $data = Tugasmingguan::findOrFail($id);
+        $data->delete();
 
-    return redirect()->route('tugasmingguan')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('tugasmingguan')->with('success', 'Data berhasil dihapus.');
+    }
 }
-
-     
-}
-
-    
-    
-

@@ -2,7 +2,7 @@
 
 @section('konten')
 <div class="row">
-  <div class="col-12 grid-margin">
+  <div class="col-8 grid-margin">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Edit Data Tugas Bulanan</h4>

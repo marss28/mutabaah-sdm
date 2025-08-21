@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tugas_harian', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('datatugasharian_id');
+            $table->string('datatugasharian_id');
             $table->time('waktu_tugas');
             $table->string('deskripsi');
             $table->timestamps();
 
-            $table->foreign('datatugasharian_id')->references('id')->on('datatugasharian')->onDelete('cascade');
+            
         });
     }
 

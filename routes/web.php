@@ -29,6 +29,7 @@ Route::get('/dashboard', [DashboardAdminController::class, 'index'])->middleware
 Route::middleware(['auth', 'adminMiddleware'])->group(function () {
      Route::get('/admindashboard', [DashboardAdminController::class, 'index'])->name('dashboardadmin');
 
+    
     // BANNER INFO
     Route::get('/bannerinfo', [BannerinfoController::class, 'index'])->name('bannerinfo');
     Route::get('/formbannerinfo', [BannerinfoController::class, 'formbannerinfo'])->name('formbannerinfo');
@@ -65,6 +66,8 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
 
     Route::get('/tugas/search', [SearchController::class, 'search'])->name('tugas.search');
 
+    Route::get('/export-tugas', [TugasController::class, 'export'])->name('tugas.export');
+
 
 
     
@@ -77,7 +80,7 @@ Route::get('/user', function(){
 
 
 Route::middleware(['auth', 'userMiddleware'])->group(function () {
-    Route::get('/dashboarduser', [DashboardUserController::class, 'dashboarduser'])->middleware(['auth', 'verified'])->name('dashboarduser');
+    Route::get('/dashboarduser', [DashboardUserController::class, 'UserIndex'])->middleware(['auth', 'verified'])->name('dashboarduser');
     
     
      // TUGAS BULANAN
@@ -104,15 +107,15 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
 
 
 
-Route::get('/export-semua', [TugasController::class, 'exportSemua'])->name('export.semua');
+// Route::get('/export-semua', [TugasController::class, 'exportSemua'])->name('export.semua');
 
 
-Route::get('/excel', [TugasController::class, 'exportHarian'])->name('excel');
-Route::get('/import-tugas', [TugasController::class, 'formImport'])->name('tugas.import');
-Route::post('/preview-tugas', [TugasController::class, 'preview'])->name('tugas.preview');
-Route::post('/import-tugas', [TugasController::class, 'import'])->name('tugas.import.store');
-Route::get('/export-tugas/{jenis}', [TugasController::class, 'export'])->name('tugas.export');
-Route::get('/pdf-tugas/{jenis}', [TugasController::class, 'pdf'])->name('tugas.pdf');
+// Route::get('/excel', [TugasController::class, 'exportHarian'])->name('excel');
+// Route::get('/import-tugas', [TugasController::class, 'formImport'])->name('tugas.import');
+// Route::post('/preview-tugas', [TugasController::class, 'preview'])->name('tugas.preview');
+// Route::post('/import-tugas', [TugasController::class, 'import'])->name('tugas.import.store');
+// Route::get('/export-tugas/{jenis}', [TugasController::class, 'export'])->name('tugas.export');
+// Route::get('/pdf-tugas/{jenis}', [TugasController::class, 'pdf'])->name('tugas.pdf');
 
 
 

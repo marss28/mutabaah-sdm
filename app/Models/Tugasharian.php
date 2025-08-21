@@ -12,6 +12,7 @@ class Tugasharian extends Model
 
     public function datatugasharian()
     {
-        return $this->belongsTo(datatugasharian::class, 'datatugasharian_id');
+        return $this->belongsTo(datatugasharian::class, 'datatugasharian_id', 'id');
     }
+
 }

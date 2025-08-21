@@ -6,37 +6,31 @@
         <div class="card mb-4">
         <h5 class="card-header">Edit Data</h5>
         <div class="card-body">
-            <form method="POST" action="{{ route('updatetugasbulanan', $tugasbulanan->first()->id) }}">
+             <form id="form-edit" method="POST" action="{{ route('updatetugasbulanan', $target->id) }}">
                 @csrf
                 @method('PUT')
- <div class="form-group">
-                <label style="margin-bottom: 20px;">Nama Tugas Bulanan</label>
-                <div class="row" style="margin-bottom:10px">
-                                            @php
-                            $selectedIds = $tugasbulanan->pluck('datatugasbulanan_id')->toArray();
-                        @endphp
-
-                        @foreach ($datatugasbulanan as $item)
-                        <div class="col-md-4">
-                            <div class="form-check d-flex align-items-center">
-                                <input 
-                                    class="form-check-input me-2" 
-                                    type="checkbox" 
-                                    name="datatugasbulanan_id[]" 
-                                    value="{{ $item->id }}" 
-                                    id="checkbox_{{ $item->id }}"
-                                    {{ in_array($item->id, $selectedIds) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="checkbox_{{ $item->id }}">
-                                    {{ $item->tugas_bulanan }}
-                                </label>
-                            </div>
-                        </div>
-                        @endforeach
-
-                    </div>
-                </div>
-
-
+ 
+                   <div class="form-group">
+    <label style="margin-bottom: 20px;">Nama Tugas Bulanan</label>
+    <div class="row" style="margin-bottom:10px">
+        @foreach ($datatugasbulanan as $item)
+        <div class="col-md-4">
+            <div class="form-check d-flex align-items-center">
+                <input 
+                    class="form-check-input me-2" 
+                    type="checkbox" 
+                    name="datatugasbulanan_id[]" 
+                    value="{{ $item->id }}" 
+                    id="checkbox_{{ $item->id }}"
+                    {{ in_array($item->id, old('datatugasbulanan_id', $selected ?? [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox_{{ $item->id }}">
+                    {{ $item->tugas_bulanan }}
+                </label>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
                 <div class="mb-3">
                     <label>Waktu Tugas</label>
                     <input type="time" name="waktu_tugas" class="form-control" value="{{ $target->waktu_tugas }}">
@@ -54,4 +48,21 @@
         </div>
     </div>
 </div>
+{{-- <script>
+    document.getElementById('form-edit').addEventListener('submit', function(e) {
+        let isChanged = false;
+
+        this.querySelectorAll('[data-original]').forEach(function(input) {
+            if (input.value !== input.getAttribute('data-original')) {
+                isChanged = true;
+            }
+        });
+
+        if (!isChanged) {
+            e.preventDefault(); // Cegah submit
+            alert('Tidak ada perubahan yang dilakukan!');
+        }
+    });
+</script> --}}
+
 @endsection

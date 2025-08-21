@@ -16,11 +16,13 @@ class UserMiddleware
      */
      public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role=='user') {
-            return $next ($request);
+       if (Auth::check() && Auth::user()->role === 'user') {
+            return $next($request);
         }
 
-        return redirect()->back();
+        // kalau bukan user, arahkan ke dashboard admin
+        return redirect()->route('dashboardadmin');
+    
     
     }
 }

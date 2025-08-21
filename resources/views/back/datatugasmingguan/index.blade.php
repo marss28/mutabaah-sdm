@@ -7,7 +7,7 @@
       <div class="card-body">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h4 class="card-title">Nama Tugas Mingguan</h4>
+          <h4 class="card-title">Tugas Mingguan</h4>
           <a href="{{ route('formdatatugasmingguan') }}" class="btn btn-primary btn-rounded">+ Tambah Data</a>
         </div>
 

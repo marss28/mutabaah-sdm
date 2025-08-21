@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Data Tugas Mingguan</th>
+                        <th>Nama Tugas Mingguan</th>
                         <th>Waktu Tugas</th>
                         <th>Deskripsi</th>
                         <th>Aksi</th>
@@ -26,9 +26,11 @@
                     @foreach ($tugasmingguan as $items)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>
-                            {{ $items->dataTugas->nama_tugas }} 
-                        </td>
+                         <td> @php
+                        $ids = explode(',', $items->datatugasmingguan_id);
+                        $names = \App\Models\DataTugasMingguan::whereIn('id', $ids)->pluck('nama_tugas')->toArray();
+                    @endphp
+                    {{ implode(', ', $names) }}</td>
                         <td>{{ $items->waktu_tugas }}</td>
                         <td>{{ $items->deskripsi }}</td>
                         <td class="position-relative">

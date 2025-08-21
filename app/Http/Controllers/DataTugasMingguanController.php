@@ -56,7 +56,7 @@ class DataTugasMingguanController extends Controller
 
     public function destroy($id)
     {
-        $datatugasmingguan = dataTugasMingguan::findOrFail($id);
+        $datatugasmingguan = DataTugasMingguan::findOrFail($id);
         $datatugasmingguan->delete();
 
         return redirect()->route('datatugasmingguan')->with('success', 'Data berhasil dihapus.');

@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tugas_harian', function (Blueprint $table) {
-            $table->boolean('selesai')->default(false)->after('user_id');
+        Schema::create('datatugasmingguan', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_tugas');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tugas_harian', function (Blueprint $table) {
-            $table->dropColumn('selesai');
-        });
+        Schema::dropIfExists('datatugasmingguan');
     }
 };

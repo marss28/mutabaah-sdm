@@ -9,8 +9,8 @@ class datatugasharian extends Model
     protected $table = 'datatugasharian';
     protected $fillable = ['nama_tugas'];
 
-    public function Tugasharian()
+     public function tugasharian()
     {
-        return $this->hasMany(Tugasharian::class);
+        return $this->hasMany(Tugasharian::class, 'datatugasharian_id', 'id');
     }
 }
